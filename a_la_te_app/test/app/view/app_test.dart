@@ -1,5 +1,5 @@
-import 'package:a_la_te_app/app/app.dart';
-import 'package:a_la_te_app/counter/counter.dart';
+import 'package:a_la_te_app/features/app/app.dart';
+import 'package:a_la_te_app/features/counter/counter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

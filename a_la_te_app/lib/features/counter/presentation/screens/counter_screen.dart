@@ -1,7 +1,9 @@
-import 'package:a_la_te_app/counter/counter.dart';
+import 'package:a_la_te_app/core/routing/app_router.dart';
+import 'package:a_la_te_app/features/counter/counter.dart';
 import 'package:a_la_te_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
@@ -29,7 +31,7 @@ class CounterView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().increment(),
+            onPressed: () => context.goNamed(AppRoute.examplesList.name),
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),

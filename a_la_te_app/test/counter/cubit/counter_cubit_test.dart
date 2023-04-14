@@ -1,4 +1,4 @@
-import 'package:a_la_te_app/counter/counter.dart';
+import 'package:a_la_te_app/features/counter/counter.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
