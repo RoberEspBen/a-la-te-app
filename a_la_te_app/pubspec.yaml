@@ -11,6 +11,7 @@ dependencies:
   bloc: 8.1.0
   connectivity_plus: 3.0.4
   dio: 5.1.1
+  flex_color_scheme: 7.0.1
   flutter:
     sdk: flutter
   flutter_bloc: 8.1.1
@@ -36,3 +37,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/user/
+    - assets/images/clubs/
