@@ -1,3 +1,4 @@
+import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/application/cubit/bottom_nav_bar_state.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +16,8 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      selectedLabelStyle: AppTextStyle.f12w500,
+      unselectedLabelStyle: AppTextStyle.f12w500,
       currentIndex: currentOptionIndex,
       items: List.generate(
         options.length,

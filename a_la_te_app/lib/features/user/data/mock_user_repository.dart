@@ -6,24 +6,46 @@ class MockUserRepository extends UserRepository {
   MockUserRepository();
 
   @override
-  Future<Result<User, Exception>> getUser() async {
+  Future<Result<User, Exception>> getLoggedUser() async {
     await Future<void>.delayed(
       const Duration(seconds: 1),
     );
 
     return const Success(
       User(
-        id: 1,
+        id: 2,
         nif: '40404040V',
-        email: 'pamema@gmail.com',
-        name: 'Juan Pérez',
+        email: 'robe@gmail.com',
+        name: 'Roberto Espinosa',
         description:
             'Llevo 10 años jugando regularmente y estoy deseando encontrar rivales a mi altura!',
-        mobilePhoneNumber: '771772773',
+        mobilePhoneNumber: '667668669',
         level: '2',
         skillfullHand: 'Izquierda',
-        wonMatches: 1,
-        playedMatches: 1,
+        wonMatches: 20,
+        playedMatches: 27,
+      ),
+    );
+  }
+
+  @override
+  Future<Result<User, Exception>> getUserById({required int id}) async {
+    await Future<void>.delayed(
+      const Duration(seconds: 1),
+    );
+
+    return Success(
+      User(
+        id: id,
+        nif: '80808080V',
+        email: 'pamema@gmail.com',
+        name: 'Juan Pérez',
+        description: 'Jugador de club ocasional a la espera de nuevos retos',
+        mobilePhoneNumber: '666665664',
+        level: '2',
+        skillfullHand: 'Derecha',
+        wonMatches: 9,
+        playedMatches: 12,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:a_la_te_app/core/routing/app_router.dart';
+import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,16 +46,11 @@ class MatchCard extends StatelessWidget {
                           children: [
                             Text(
                               match.firstPlayerName,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: AppTextStyle.f14w700,
                             ),
                             Text(
                               'Nivel ${match.firstPlayerLevel}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
+                              style: AppTextStyle.f12w400,
                             ),
                           ],
                         ),
@@ -78,7 +74,10 @@ class MatchCard extends StatelessWidget {
                         const SizedBox(
                           width: 20,
                         ),
-                        Text(match.clubName),
+                        Text(
+                          match.clubName,
+                          style: AppTextStyle.f14w500,
+                        ),
                       ],
                     ),
                   ],
@@ -95,6 +94,7 @@ class MatchCard extends StatelessWidget {
                           match.initialHour * 1000,
                         ),
                       ),
+                      style: AppTextStyle.f14w500,
                     ),
                     Text(
                       DateFormat('HH:mm').format(
@@ -102,6 +102,7 @@ class MatchCard extends StatelessWidget {
                           match.finalHour * 1000,
                         ),
                       ),
+                      style: AppTextStyle.f14w500,
                     ),
                   ],
                 ),

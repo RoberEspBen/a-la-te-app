@@ -7,7 +7,14 @@ class Endpoints {
   static const String baseUrl = 'http://regres.in/api';
   static const String examples = '/examples';
 
+  //MATCH
   static const String matches = '/matches';
-  static const String user = '/user';
   static const String matchesByUserId = '/matchesByUserId';
+
+  //USER
+  static const String loggedUser = '/loggedUser';
+  static const String userById = '/userById';
+
+  //PLAYER
+  static const String playerById = '/playerById';
 }

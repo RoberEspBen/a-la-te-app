@@ -3,5 +3,6 @@ import 'package:multiple_result/multiple_result.dart';
 
 // ignore: one_member_abstracts
 abstract class UserRepository {
-  Future<Result<User, Exception>> getUser();
+  Future<Result<User, Exception>> getLoggedUser();
+  Future<Result<User, Exception>> getUserById({required int id});
 }

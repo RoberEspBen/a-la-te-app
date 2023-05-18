@@ -1,4 +1,3 @@
-import 'package:a_la_te_app/features/example/domain/models/example.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:a_la_te_app/features/match/presentation/matches_list/widgets/match_card.dart';
 import 'package:flutter/material.dart';

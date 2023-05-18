@@ -1,6 +1,6 @@
 import 'package:a_la_te_app/core/utils/snackbar.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_cubit.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_state.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_state.dart';
 import 'package:a_la_te_app/features/match/presentation/matches_list/widgets/matches_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

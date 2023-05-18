@@ -1,7 +1,7 @@
 import 'package:a_la_te_app/core/di/service_locator.dart';
 import 'package:a_la_te_app/core/routing/app_router.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/application/cubit/bottom_nav_bar_cubit.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:a_la_te_app/l10n/l10n.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';

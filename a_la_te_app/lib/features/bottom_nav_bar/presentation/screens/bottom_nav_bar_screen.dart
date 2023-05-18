@@ -1,3 +1,4 @@
+import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/application/cubit/bottom_nav_bar_cubit.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/application/cubit/bottom_nav_bar_state.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/presentation/widgets/bottom_nav_bar.dart';
@@ -25,6 +26,9 @@ class BottomNavBarScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               state.options[state.currentOptionIndex].name,
+              style: AppTextStyle.f18w500.copyWith(
+                fontSize: 22,
+              ),
             ),
           ),
           body: child,
