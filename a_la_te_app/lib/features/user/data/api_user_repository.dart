@@ -9,10 +9,10 @@ class ApiUserRepository extends UserRepository {
   final NetworkService networkService;
 
   @override
-  Future<Result<User, Exception>> getUser() async {
+  Future<Result<User, Exception>> getLoggedUser() async {
     try {
       // ignore: avoid_dynamic_calls
-      final response = await networkService.get(Endpoints.user);
+      final response = await networkService.get(Endpoints.loggedUser);
       // ignore: avoid_dynamic_calls
       if (response.statusCode == 230) {
         return Error(
@@ -23,6 +23,31 @@ class ApiUserRepository extends UserRepository {
       const result = User(id: 4);
 
       return const Success(result);
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<User, Exception>> getUserById({required int id}) async {
+    try {
+      // ignore: avoid_dynamic_calls
+      final response = await networkService.get(
+        Endpoints.userById,
+        queryParameters: {
+          'userId': id,
+        },
+      );
+      // ignore: avoid_dynamic_calls
+      if (response.statusCode == 230) {
+        return Error(
+          Exception('Ha ocurrido un error'),
+        );
+      }
+
+      final result = User(id: id);
+
+      return Success(result);
     } catch (e) {
       return Error(Exception(e));
     }

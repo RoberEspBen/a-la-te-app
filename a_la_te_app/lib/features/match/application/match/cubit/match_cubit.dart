@@ -1,5 +1,5 @@
 import 'package:a_la_te_app/core/constants/enums/state_status.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_state.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_state.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
 import 'package:bloc/bloc.dart';
 

@@ -1,5 +1,5 @@
 import 'package:a_la_te_app/core/constants/enums/state_status.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_state.dart';
 import 'package:a_la_te_app/features/user/domain/repository/user_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -22,7 +22,7 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
 
-    final result = await _userRepository.getUser();
+    final result = await _userRepository.getLoggedUser();
 
     result.when(
       (success) {

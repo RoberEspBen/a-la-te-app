@@ -3,10 +3,13 @@ import 'package:a_la_te_app/core/network/network_service.dart';
 import 'package:a_la_te_app/features/example/data/repositories/api_example_repository.dart';
 import 'package:a_la_te_app/features/example/data/repositories/mock_example_repository.dart';
 import 'package:a_la_te_app/features/example/domain/repositories/example_repository.dart';
-import 'package:a_la_te_app/features/match/application/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
 import 'package:a_la_te_app/features/match/data/repositories/api_match_repository.dart';
 import 'package:a_la_te_app/features/match/data/repositories/mock_match_repository.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
+import 'package:a_la_te_app/features/player/data/api_user_repository.dart';
+import 'package:a_la_te_app/features/player/data/mock_user_repository.dart';
+import 'package:a_la_te_app/features/player/domain/repository/player_repository.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:a_la_te_app/features/user/data/api_user_repository.dart';
 import 'package:a_la_te_app/features/user/data/mock_user_repository.dart';
@@ -41,6 +44,13 @@ Future<void> serviceLocatorSetUp() async {
       () => useMocks
           ? MockUserRepository()
           : ApiUserRepository(
+              networkService: locator<NetworkService>(),
+            ),
+    )
+    ..registerLazySingleton<PlayerRepository>(
+      () => useMocks
+          ? MockPlayerRepository()
+          : ApiPlayerRepository(
               networkService: locator<NetworkService>(),
             ),
     );
