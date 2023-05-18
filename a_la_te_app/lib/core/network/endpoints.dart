@@ -6,4 +6,8 @@ class Endpoints {
 
   static const String baseUrl = 'http://regres.in/api';
   static const String examples = '/examples';
+
+  static const String matches = '/matches';
+  static const String user = '/user';
+  static const String matchesByUserId = '/matchesByUserId';
 }

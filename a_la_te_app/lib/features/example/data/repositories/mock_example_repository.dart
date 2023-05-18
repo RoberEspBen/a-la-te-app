@@ -5,7 +5,6 @@ import 'package:multiple_result/multiple_result.dart';
 class MockExampleRepository implements ExampleRepository {
   @override
   Future<Result<List<Example>, Exception>> getExamples() async {
-    print('hola mockiamos?');
     await Future<void>.delayed(
       const Duration(seconds: 1),
     );

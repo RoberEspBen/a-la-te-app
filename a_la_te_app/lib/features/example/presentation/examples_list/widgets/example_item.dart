@@ -16,10 +16,6 @@ class ExampleItem extends StatelessWidget {
         extra: example,
       ),
       child: Card(
-        color: Colors.grey[200],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

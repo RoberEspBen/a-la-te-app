@@ -20,10 +20,7 @@ class ExamplesListScreen extends StatelessWidget {
           )..getExamples(),
         ),
       ],
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Examples List Screen')),
-        body: const _Body(),
-      ),
+      child: const _Body(),
     );
   }
 }
