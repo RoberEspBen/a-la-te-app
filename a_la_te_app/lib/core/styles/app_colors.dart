@@ -11,7 +11,9 @@ class AppColors {
   static const errorContainer = Color(0xFFFFDAD6);
 
   static const backgroundGrey = Color(0XFFE7E7E7);
-  static const backgroundGrey2 = Color(0XFFFAFBFD);
+  static const backgroundGrey2 = Color.fromARGB(255, 237, 237, 237);
+  static const backgroundGrey3 = Color(0XFFFAFBFD);
   static const black = Color(0xFF454545);
   static const black2 = Color(0xFF8D8D8D);
+  static const white = Color(0xFFFFFFFF);
 }

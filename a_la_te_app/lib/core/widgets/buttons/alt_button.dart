@@ -1,3 +1,4 @@
+import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -94,6 +95,7 @@ class ALTButton extends StatelessWidget {
           ),
         Text(
           text,
+          style: AppTextStyle.f12w600,
         ),
         if (rightIcon != null)
           Icon(

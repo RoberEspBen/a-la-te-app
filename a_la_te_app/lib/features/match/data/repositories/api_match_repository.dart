@@ -64,4 +64,38 @@ class ApiMatchRepository extends MatchRepository {
       return Error(Exception(e));
     }
   }
+
+  @override
+  Future<Result<List<MatchModel>, Exception>> getMatchesByUserIdAndMatchStatus({
+    required int id,
+    required MatchStatus matchStatus,
+  }) async {
+    try {
+      // ignore: avoid_dynamic_calls
+      final response = await networkService.get(
+        Endpoints.matchesByUserId,
+        queryParameters: {
+          'userId': id,
+          'matchStatus': matchStatus,
+        },
+      );
+      // ignore: avoid_dynamic_calls
+      if (response.statusCode == 230) {
+        return Error(
+          Exception('Ha ocurrido un error'),
+        );
+      }
+
+      final result = <MatchModel>[];
+
+      // ignore: avoid_dynamic_calls
+      for (final element in response.data['data'] as List) {
+        result.add(MatchModel.fromJson(element as Map<String, Object?>));
+      }
+
+      return Success(result);
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
 }

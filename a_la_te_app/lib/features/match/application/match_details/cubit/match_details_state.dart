@@ -7,7 +7,8 @@ part 'match_details_state.freezed.dart';
 @freezed
 class MatchDetailsState with _$MatchDetailsState {
   const factory MatchDetailsState({
-    @Default(null) Player? player,
+    @Default(null) Player? firstPlayer,
+    @Default(null) Player? secondPlayer,
     @Default(StateStatus.initial) StateStatus status,
     @Default('') String errorMessage,
   }) = _MatchDetailsState;

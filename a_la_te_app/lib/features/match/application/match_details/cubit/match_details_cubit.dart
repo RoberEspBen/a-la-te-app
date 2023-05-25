@@ -10,22 +10,51 @@ class MatchDetailsCubit extends Cubit<MatchDetailsState> {
 
   final PlayerRepository _playerRepository;
 
-  Future<void> getPlayerById({required int id}) async {
+  Future<void> getPlayersById({
+    required int firstPlayerId,
+    int? secondPlayerId,
+  }) async {
     emit(
       state.copyWith(
         status: StateStatus.loading,
       ),
     );
 
-    final result = await _playerRepository.getPlayerById(id: id);
+    final result = await _playerRepository.getPlayerById(id: firstPlayerId);
 
     result.when(
-      (success) => emit(
-        state.copyWith(
-          player: success,
-          status: StateStatus.loaded,
-        ),
-      ),
+      (success) async {
+        emit(
+          state.copyWith(
+            firstPlayer: success,
+          ),
+        );
+        if (secondPlayerId != null) {
+          final result2 = await _playerRepository.getPlayerById(
+            id: secondPlayerId,
+          );
+          result2.when(
+            (success) => emit(
+              state.copyWith(
+                secondPlayer: success,
+                status: StateStatus.loaded,
+              ),
+            ),
+            (error) => emit(
+              state.copyWith(
+                status: StateStatus.error,
+                errorMessage: error.toString(),
+              ),
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: StateStatus.loaded,
+            ),
+          );
+        }
+      },
       (error) => emit(
         state.copyWith(
           status: StateStatus.error,

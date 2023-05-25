@@ -9,6 +9,9 @@ part of 'match_model.dart';
 _$_MatchModel _$$_MatchModelFromJson(Map<String, dynamic> json) =>
     _$_MatchModel(
       id: json['id'] as String,
+      matchStatus:
+          $enumDecodeNullable(_$MatchStatusEnumMap, json['matchStatus']) ??
+              MatchStatus.matchCreated,
       firstPlayerId: json['firstPlayerId'] as int? ?? 0,
       firstPlayerName: json['firstPlayerName'] as String? ?? '',
       firstPlayerLevel: json['firstPlayerLevel'] as int? ?? 0,
@@ -29,11 +32,13 @@ _$_MatchModel _$$_MatchModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => MatchSet.fromJson(e as Map<String, dynamic>))
               .toList() ??
           null,
+      winningPlayerId: json['winningPlayerId'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_MatchModelToJson(_$_MatchModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'matchStatus': _$MatchStatusEnumMap[instance.matchStatus]!,
       'firstPlayerId': instance.firstPlayerId,
       'firstPlayerName': instance.firstPlayerName,
       'firstPlayerLevel': instance.firstPlayerLevel,
@@ -49,4 +54,11 @@ Map<String, dynamic> _$$_MatchModelToJson(_$_MatchModel instance) =>
       'initialHour': instance.initialHour,
       'finalHour': instance.finalHour,
       'matchResult': instance.matchResult,
+      'winningPlayerId': instance.winningPlayerId,
     };
+
+const _$MatchStatusEnumMap = {
+  MatchStatus.matchCreated: 'matchCreated',
+  MatchStatus.scheduledMatch: 'scheduledMatch',
+  MatchStatus.matchPlayed: 'matchPlayed',
+};

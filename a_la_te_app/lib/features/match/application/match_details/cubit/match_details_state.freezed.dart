@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MatchDetailsState {
-  Player? get player => throw _privateConstructorUsedError;
+  Player? get firstPlayer => throw _privateConstructorUsedError;
+  Player? get secondPlayer => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -31,9 +32,14 @@ abstract class $MatchDetailsStateCopyWith<$Res> {
           MatchDetailsState value, $Res Function(MatchDetailsState) then) =
       _$MatchDetailsStateCopyWithImpl<$Res, MatchDetailsState>;
   @useResult
-  $Res call({Player? player, StateStatus status, String errorMessage});
+  $Res call(
+      {Player? firstPlayer,
+      Player? secondPlayer,
+      StateStatus status,
+      String errorMessage});
 
-  $PlayerCopyWith<$Res>? get player;
+  $PlayerCopyWith<$Res>? get firstPlayer;
+  $PlayerCopyWith<$Res>? get secondPlayer;
 }
 
 /// @nodoc
@@ -49,14 +55,19 @@ class _$MatchDetailsStateCopyWithImpl<$Res, $Val extends MatchDetailsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? player = freezed,
+    Object? firstPlayer = freezed,
+    Object? secondPlayer = freezed,
     Object? status = null,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
-      player: freezed == player
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
+      firstPlayer: freezed == firstPlayer
+          ? _value.firstPlayer
+          : firstPlayer // ignore: cast_nullable_to_non_nullable
+              as Player?,
+      secondPlayer: freezed == secondPlayer
+          ? _value.secondPlayer
+          : secondPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
       status: null == status
           ? _value.status
@@ -71,13 +82,25 @@ class _$MatchDetailsStateCopyWithImpl<$Res, $Val extends MatchDetailsState>
 
   @override
   @pragma('vm:prefer-inline')
-  $PlayerCopyWith<$Res>? get player {
-    if (_value.player == null) {
+  $PlayerCopyWith<$Res>? get firstPlayer {
+    if (_value.firstPlayer == null) {
       return null;
     }
 
-    return $PlayerCopyWith<$Res>(_value.player!, (value) {
-      return _then(_value.copyWith(player: value) as $Val);
+    return $PlayerCopyWith<$Res>(_value.firstPlayer!, (value) {
+      return _then(_value.copyWith(firstPlayer: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlayerCopyWith<$Res>? get secondPlayer {
+    if (_value.secondPlayer == null) {
+      return null;
+    }
+
+    return $PlayerCopyWith<$Res>(_value.secondPlayer!, (value) {
+      return _then(_value.copyWith(secondPlayer: value) as $Val);
     });
   }
 }
@@ -90,10 +113,16 @@ abstract class _$$_MatchDetailsStateCopyWith<$Res>
       __$$_MatchDetailsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Player? player, StateStatus status, String errorMessage});
+  $Res call(
+      {Player? firstPlayer,
+      Player? secondPlayer,
+      StateStatus status,
+      String errorMessage});
 
   @override
-  $PlayerCopyWith<$Res>? get player;
+  $PlayerCopyWith<$Res>? get firstPlayer;
+  @override
+  $PlayerCopyWith<$Res>? get secondPlayer;
 }
 
 /// @nodoc
@@ -107,14 +136,19 @@ class __$$_MatchDetailsStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? player = freezed,
+    Object? firstPlayer = freezed,
+    Object? secondPlayer = freezed,
     Object? status = null,
     Object? errorMessage = null,
   }) {
     return _then(_$_MatchDetailsState(
-      player: freezed == player
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
+      firstPlayer: freezed == firstPlayer
+          ? _value.firstPlayer
+          : firstPlayer // ignore: cast_nullable_to_non_nullable
+              as Player?,
+      secondPlayer: freezed == secondPlayer
+          ? _value.secondPlayer
+          : secondPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
       status: null == status
           ? _value.status
@@ -132,13 +166,17 @@ class __$$_MatchDetailsStateCopyWithImpl<$Res>
 
 class _$_MatchDetailsState implements _MatchDetailsState {
   const _$_MatchDetailsState(
-      {this.player = null,
+      {this.firstPlayer = null,
+      this.secondPlayer = null,
       this.status = StateStatus.initial,
       this.errorMessage = ''});
 
   @override
   @JsonKey()
-  final Player? player;
+  final Player? firstPlayer;
+  @override
+  @JsonKey()
+  final Player? secondPlayer;
   @override
   @JsonKey()
   final StateStatus status;
@@ -148,7 +186,7 @@ class _$_MatchDetailsState implements _MatchDetailsState {
 
   @override
   String toString() {
-    return 'MatchDetailsState(player: $player, status: $status, errorMessage: $errorMessage)';
+    return 'MatchDetailsState(firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
@@ -156,14 +194,18 @@ class _$_MatchDetailsState implements _MatchDetailsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MatchDetailsState &&
-            (identical(other.player, player) || other.player == player) &&
+            (identical(other.firstPlayer, firstPlayer) ||
+                other.firstPlayer == firstPlayer) &&
+            (identical(other.secondPlayer, secondPlayer) ||
+                other.secondPlayer == secondPlayer) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, player, status, errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, firstPlayer, secondPlayer, status, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -175,12 +217,15 @@ class _$_MatchDetailsState implements _MatchDetailsState {
 
 abstract class _MatchDetailsState implements MatchDetailsState {
   const factory _MatchDetailsState(
-      {final Player? player,
+      {final Player? firstPlayer,
+      final Player? secondPlayer,
       final StateStatus status,
       final String errorMessage}) = _$_MatchDetailsState;
 
   @override
-  Player? get player;
+  Player? get firstPlayer;
+  @override
+  Player? get secondPlayer;
   @override
   StateStatus get status;
   @override

@@ -6,15 +6,23 @@ import 'package:a_la_te_app/features/example/presentation/examples_list/screens/
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:a_la_te_app/features/match/presentation/match_details/screens/match_details_screen.dart';
 import 'package:a_la_te_app/features/match/presentation/matches_list/screens/matches_list_screen.dart';
+import 'package:a_la_te_app/features/player/domain/model/player.dart';
+import 'package:a_la_te_app/features/player/presentation/screens/player_profile_screen.dart';
+import 'package:a_la_te_app/features/profile/presentation/srceens/profile_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 enum AppRoute {
   startApp('/'),
+  //EXAMPLES
   examplesList('/examplesList'),
+  exampleDetails('exampleDetails'),
+  //MATCH
   matchesList('/matchesList'),
   matchDetails('matchDetails'),
-  exampleDetails('exampleDetails');
+  //PROFILE
+  profile('/profile'),
+  playerProfile('playerProfile');
 
   const AppRoute(this.path);
   final String path;
@@ -86,8 +94,30 @@ final goRouter = GoRouter(
                   match: state.extra as MatchModel,
                 );
               },
+              routes: [
+                GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: AppRoute.playerProfile.path,
+                  name: AppRoute.playerProfile.name,
+                  builder: (context, state) {
+                    return PlayerProfileScreen(
+                      player: state.extra as Player,
+                    );
+                  },
+                ),
+              ],
             ),
           ],
+        ),
+        GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
+          path: AppRoute.profile.path,
+          name: AppRoute.profile.name,
+          pageBuilder: (context, state) {
+            return const NoTransitionPage(
+              child: ProfileScreen(),
+            );
+          },
         ),
       ],
     ),

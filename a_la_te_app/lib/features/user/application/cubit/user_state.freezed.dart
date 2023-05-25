@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserState {
   User get user => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
+  List<MatchModel> get matchesPlayed => throw _privateConstructorUsedError;
+  List<MatchModel> get matchesCreated => throw _privateConstructorUsedError;
+  List<MatchModel> get scheduledMatches => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +33,13 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({User user, StateStatus status, String errorMessage});
+  $Res call(
+      {User user,
+      StateStatus status,
+      List<MatchModel> matchesPlayed,
+      List<MatchModel> matchesCreated,
+      List<MatchModel> scheduledMatches,
+      String errorMessage});
 
   $UserCopyWith<$Res> get user;
 }
@@ -50,6 +59,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   $Res call({
     Object? user = null,
     Object? status = null,
+    Object? matchesPlayed = null,
+    Object? matchesCreated = null,
+    Object? scheduledMatches = null,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
@@ -61,6 +73,18 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      matchesPlayed: null == matchesPlayed
+          ? _value.matchesPlayed
+          : matchesPlayed // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
+      matchesCreated: null == matchesCreated
+          ? _value.matchesCreated
+          : matchesCreated // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
+      scheduledMatches: null == scheduledMatches
+          ? _value.scheduledMatches
+          : scheduledMatches // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -84,7 +108,13 @@ abstract class _$$_UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
       __$$_UserStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User user, StateStatus status, String errorMessage});
+  $Res call(
+      {User user,
+      StateStatus status,
+      List<MatchModel> matchesPlayed,
+      List<MatchModel> matchesCreated,
+      List<MatchModel> scheduledMatches,
+      String errorMessage});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -103,6 +133,9 @@ class __$$_UserStateCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? status = null,
+    Object? matchesPlayed = null,
+    Object? matchesCreated = null,
+    Object? scheduledMatches = null,
     Object? errorMessage = null,
   }) {
     return _then(_$_UserState(
@@ -114,6 +147,18 @@ class __$$_UserStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as StateStatus,
+      matchesPlayed: null == matchesPlayed
+          ? _value._matchesPlayed
+          : matchesPlayed // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
+      matchesCreated: null == matchesCreated
+          ? _value._matchesCreated
+          : matchesCreated // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
+      scheduledMatches: null == scheduledMatches
+          ? _value._scheduledMatches
+          : scheduledMatches // ignore: cast_nullable_to_non_nullable
+              as List<MatchModel>,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -128,7 +173,13 @@ class _$_UserState implements _UserState {
   const _$_UserState(
       {this.user = const User(id: 0),
       this.status = StateStatus.initial,
-      this.errorMessage = ''});
+      final List<MatchModel> matchesPlayed = const [],
+      final List<MatchModel> matchesCreated = const [],
+      final List<MatchModel> scheduledMatches = const [],
+      this.errorMessage = ''})
+      : _matchesPlayed = matchesPlayed,
+        _matchesCreated = matchesCreated,
+        _scheduledMatches = scheduledMatches;
 
   @override
   @JsonKey()
@@ -136,13 +187,41 @@ class _$_UserState implements _UserState {
   @override
   @JsonKey()
   final StateStatus status;
+  final List<MatchModel> _matchesPlayed;
+  @override
+  @JsonKey()
+  List<MatchModel> get matchesPlayed {
+    if (_matchesPlayed is EqualUnmodifiableListView) return _matchesPlayed;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_matchesPlayed);
+  }
+
+  final List<MatchModel> _matchesCreated;
+  @override
+  @JsonKey()
+  List<MatchModel> get matchesCreated {
+    if (_matchesCreated is EqualUnmodifiableListView) return _matchesCreated;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_matchesCreated);
+  }
+
+  final List<MatchModel> _scheduledMatches;
+  @override
+  @JsonKey()
+  List<MatchModel> get scheduledMatches {
+    if (_scheduledMatches is EqualUnmodifiableListView)
+      return _scheduledMatches;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_scheduledMatches);
+  }
+
   @override
   @JsonKey()
   final String errorMessage;
 
   @override
   String toString() {
-    return 'UserState(user: $user, status: $status, errorMessage: $errorMessage)';
+    return 'UserState(user: $user, status: $status, matchesPlayed: $matchesPlayed, matchesCreated: $matchesCreated, scheduledMatches: $scheduledMatches, errorMessage: $errorMessage)';
   }
 
   @override
@@ -152,12 +231,25 @@ class _$_UserState implements _UserState {
             other is _$_UserState &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._matchesPlayed, _matchesPlayed) &&
+            const DeepCollectionEquality()
+                .equals(other._matchesCreated, _matchesCreated) &&
+            const DeepCollectionEquality()
+                .equals(other._scheduledMatches, _scheduledMatches) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, status, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      user,
+      status,
+      const DeepCollectionEquality().hash(_matchesPlayed),
+      const DeepCollectionEquality().hash(_matchesCreated),
+      const DeepCollectionEquality().hash(_scheduledMatches),
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -170,12 +262,21 @@ abstract class _UserState implements UserState {
   const factory _UserState(
       {final User user,
       final StateStatus status,
+      final List<MatchModel> matchesPlayed,
+      final List<MatchModel> matchesCreated,
+      final List<MatchModel> scheduledMatches,
       final String errorMessage}) = _$_UserState;
 
   @override
   User get user;
   @override
   StateStatus get status;
+  @override
+  List<MatchModel> get matchesPlayed;
+  @override
+  List<MatchModel> get matchesCreated;
+  @override
+  List<MatchModel> get scheduledMatches;
   @override
   String get errorMessage;
   @override

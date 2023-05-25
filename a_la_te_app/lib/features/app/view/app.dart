@@ -23,6 +23,7 @@ class App extends StatelessWidget {
         ),
         BlocProvider<UserCubit>(
           create: (_) => locator<UserCubit>()..getUser(),
+          lazy: false,
         ),
       ],
       child: MaterialApp.router(

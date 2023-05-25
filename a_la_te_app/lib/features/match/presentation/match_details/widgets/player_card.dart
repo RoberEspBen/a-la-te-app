@@ -1,7 +1,11 @@
+import 'package:a_la_te_app/core/di/service_locator.dart';
+import 'package:a_la_te_app/core/routing/app_router.dart';
 import 'package:a_la_te_app/core/styles/app_colors.dart';
 import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/features/player/domain/model/player.dart';
+import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PlayerCard extends StatelessWidget {
   const PlayerCard({super.key, required this.player});
@@ -11,7 +15,17 @@ class PlayerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (player.id == locator<UserCubit>().state.user.id) {
+          context.goNamed(AppRoute.profile.name);
+        } else {
+          print('holaa');
+          context.pushNamed(
+            AppRoute.playerProfile.name,
+            extra: player,
+          );
+        }
+      },
       child: Card(
         child: Padding(
           padding: const EdgeInsets.symmetric(

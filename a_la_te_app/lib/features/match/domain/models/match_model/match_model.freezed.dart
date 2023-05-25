@@ -21,6 +21,7 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MatchModel {
   String get id => throw _privateConstructorUsedError;
+  MatchStatus get matchStatus => throw _privateConstructorUsedError;
   int get firstPlayerId => throw _privateConstructorUsedError;
   String get firstPlayerName => throw _privateConstructorUsedError;
   int get firstPlayerLevel => throw _privateConstructorUsedError;
@@ -36,6 +37,7 @@ mixin _$MatchModel {
   int get initialHour => throw _privateConstructorUsedError;
   int get finalHour => throw _privateConstructorUsedError;
   List<MatchSet>? get matchResult => throw _privateConstructorUsedError;
+  int? get winningPlayerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,6 +53,7 @@ abstract class $MatchModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      MatchStatus matchStatus,
       int firstPlayerId,
       String firstPlayerName,
       int firstPlayerLevel,
@@ -65,7 +68,8 @@ abstract class $MatchModelCopyWith<$Res> {
       DateTime? matchDate,
       int initialHour,
       int finalHour,
-      List<MatchSet>? matchResult});
+      List<MatchSet>? matchResult,
+      int? winningPlayerId});
 }
 
 /// @nodoc
@@ -82,6 +86,7 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
   @override
   $Res call({
     Object? id = null,
+    Object? matchStatus = null,
     Object? firstPlayerId = null,
     Object? firstPlayerName = null,
     Object? firstPlayerLevel = null,
@@ -97,12 +102,17 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
     Object? initialHour = null,
     Object? finalHour = null,
     Object? matchResult = freezed,
+    Object? winningPlayerId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      matchStatus: null == matchStatus
+          ? _value.matchStatus
+          : matchStatus // ignore: cast_nullable_to_non_nullable
+              as MatchStatus,
       firstPlayerId: null == firstPlayerId
           ? _value.firstPlayerId
           : firstPlayerId // ignore: cast_nullable_to_non_nullable
@@ -163,6 +173,10 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
           ? _value.matchResult
           : matchResult // ignore: cast_nullable_to_non_nullable
               as List<MatchSet>?,
+      winningPlayerId: freezed == winningPlayerId
+          ? _value.winningPlayerId
+          : winningPlayerId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -177,6 +191,7 @@ abstract class _$$_MatchModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      MatchStatus matchStatus,
       int firstPlayerId,
       String firstPlayerName,
       int firstPlayerLevel,
@@ -191,7 +206,8 @@ abstract class _$$_MatchModelCopyWith<$Res>
       DateTime? matchDate,
       int initialHour,
       int finalHour,
-      List<MatchSet>? matchResult});
+      List<MatchSet>? matchResult,
+      int? winningPlayerId});
 }
 
 /// @nodoc
@@ -206,6 +222,7 @@ class __$$_MatchModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? matchStatus = null,
     Object? firstPlayerId = null,
     Object? firstPlayerName = null,
     Object? firstPlayerLevel = null,
@@ -221,12 +238,17 @@ class __$$_MatchModelCopyWithImpl<$Res>
     Object? initialHour = null,
     Object? finalHour = null,
     Object? matchResult = freezed,
+    Object? winningPlayerId = freezed,
   }) {
     return _then(_$_MatchModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      matchStatus: null == matchStatus
+          ? _value.matchStatus
+          : matchStatus // ignore: cast_nullable_to_non_nullable
+              as MatchStatus,
       firstPlayerId: null == firstPlayerId
           ? _value.firstPlayerId
           : firstPlayerId // ignore: cast_nullable_to_non_nullable
@@ -287,6 +309,10 @@ class __$$_MatchModelCopyWithImpl<$Res>
           ? _value._matchResult
           : matchResult // ignore: cast_nullable_to_non_nullable
               as List<MatchSet>?,
+      winningPlayerId: freezed == winningPlayerId
+          ? _value.winningPlayerId
+          : winningPlayerId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -296,6 +322,7 @@ class __$$_MatchModelCopyWithImpl<$Res>
 class _$_MatchModel implements _MatchModel {
   const _$_MatchModel(
       {required this.id,
+      this.matchStatus = MatchStatus.matchCreated,
       this.firstPlayerId = 0,
       this.firstPlayerName = '',
       this.firstPlayerLevel = 0,
@@ -310,7 +337,8 @@ class _$_MatchModel implements _MatchModel {
       this.matchDate = null,
       this.initialHour = 0,
       this.finalHour = 0,
-      final List<MatchSet>? matchResult = null})
+      final List<MatchSet>? matchResult = null,
+      this.winningPlayerId = 0})
       : _matchResult = matchResult;
 
   factory _$_MatchModel.fromJson(Map<String, dynamic> json) =>
@@ -318,6 +346,9 @@ class _$_MatchModel implements _MatchModel {
 
   @override
   final String id;
+  @override
+  @JsonKey()
+  final MatchStatus matchStatus;
   @override
   @JsonKey()
   final int firstPlayerId;
@@ -372,8 +403,12 @@ class _$_MatchModel implements _MatchModel {
   }
 
   @override
+  @JsonKey()
+  final int? winningPlayerId;
+
+  @override
   String toString() {
-    return 'MatchModel(id: $id, firstPlayerId: $firstPlayerId, firstPlayerName: $firstPlayerName, firstPlayerLevel: $firstPlayerLevel, firstPlayerPhoto: $firstPlayerPhoto, secondPlayerId: $secondPlayerId, secondPlayerName: $secondPlayerName, secondPlayerLevel: $secondPlayerLevel, secondPlayerPhoto: $secondPlayerPhoto, clubName: $clubName, clubAddress: $clubAddress, clubImage: $clubImage, matchDate: $matchDate, initialHour: $initialHour, finalHour: $finalHour, matchResult: $matchResult)';
+    return 'MatchModel(id: $id, matchStatus: $matchStatus, firstPlayerId: $firstPlayerId, firstPlayerName: $firstPlayerName, firstPlayerLevel: $firstPlayerLevel, firstPlayerPhoto: $firstPlayerPhoto, secondPlayerId: $secondPlayerId, secondPlayerName: $secondPlayerName, secondPlayerLevel: $secondPlayerLevel, secondPlayerPhoto: $secondPlayerPhoto, clubName: $clubName, clubAddress: $clubAddress, clubImage: $clubImage, matchDate: $matchDate, initialHour: $initialHour, finalHour: $finalHour, matchResult: $matchResult, winningPlayerId: $winningPlayerId)';
   }
 
   @override
@@ -382,6 +417,8 @@ class _$_MatchModel implements _MatchModel {
         (other.runtimeType == runtimeType &&
             other is _$_MatchModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.matchStatus, matchStatus) ||
+                other.matchStatus == matchStatus) &&
             (identical(other.firstPlayerId, firstPlayerId) ||
                 other.firstPlayerId == firstPlayerId) &&
             (identical(other.firstPlayerName, firstPlayerName) ||
@@ -411,7 +448,9 @@ class _$_MatchModel implements _MatchModel {
             (identical(other.finalHour, finalHour) ||
                 other.finalHour == finalHour) &&
             const DeepCollectionEquality()
-                .equals(other._matchResult, _matchResult));
+                .equals(other._matchResult, _matchResult) &&
+            (identical(other.winningPlayerId, winningPlayerId) ||
+                other.winningPlayerId == winningPlayerId));
   }
 
   @JsonKey(ignore: true)
@@ -419,6 +458,7 @@ class _$_MatchModel implements _MatchModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      matchStatus,
       firstPlayerId,
       firstPlayerName,
       firstPlayerLevel,
@@ -433,7 +473,8 @@ class _$_MatchModel implements _MatchModel {
       matchDate,
       initialHour,
       finalHour,
-      const DeepCollectionEquality().hash(_matchResult));
+      const DeepCollectionEquality().hash(_matchResult),
+      winningPlayerId);
 
   @JsonKey(ignore: true)
   @override
@@ -452,6 +493,7 @@ class _$_MatchModel implements _MatchModel {
 abstract class _MatchModel implements MatchModel {
   const factory _MatchModel(
       {required final String id,
+      final MatchStatus matchStatus,
       final int firstPlayerId,
       final String firstPlayerName,
       final int firstPlayerLevel,
@@ -466,13 +508,16 @@ abstract class _MatchModel implements MatchModel {
       final DateTime? matchDate,
       final int initialHour,
       final int finalHour,
-      final List<MatchSet>? matchResult}) = _$_MatchModel;
+      final List<MatchSet>? matchResult,
+      final int? winningPlayerId}) = _$_MatchModel;
 
   factory _MatchModel.fromJson(Map<String, dynamic> json) =
       _$_MatchModel.fromJson;
 
   @override
   String get id;
+  @override
+  MatchStatus get matchStatus;
   @override
   int get firstPlayerId;
   @override
@@ -503,6 +548,8 @@ abstract class _MatchModel implements MatchModel {
   int get finalHour;
   @override
   List<MatchSet>? get matchResult;
+  @override
+  int? get winningPlayerId;
   @override
   @JsonKey(ignore: true)
   _$$_MatchModelCopyWith<_$_MatchModel> get copyWith =>

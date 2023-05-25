@@ -7,4 +7,8 @@ abstract class MatchRepository {
   Future<Result<List<MatchModel>, Exception>> getMatchesByUserId({
     required int id,
   });
+  Future<Result<List<MatchModel>, Exception>> getMatchesByUserIdAndMatchStatus({
+    required int id,
+    required MatchStatus matchStatus,
+  });
 }
