@@ -1,5 +1,6 @@
 import 'package:a_la_te_app/core/constants/enums/state_status.dart';
-import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
+import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_state.dart';
 import 'package:a_la_te_app/features/user/domain/repository/user_repository.dart';
 import 'package:bloc/bloc.dart';
@@ -7,13 +8,13 @@ import 'package:bloc/bloc.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit({
     required UserRepository userRepository,
-    required MatchCubit matchCubit,
+    required MatchRepository matchRepository,
   })  : _userRepository = userRepository,
-        _matchCubit = matchCubit,
+        _matchRepository = matchRepository,
         super(const UserState());
 
   final UserRepository _userRepository;
-  final MatchCubit _matchCubit;
+  final MatchRepository _matchRepository;
 
   Future<void> getUser() async {
     emit(
@@ -25,14 +26,71 @@ class UserCubit extends Cubit<UserState> {
     final result = await _userRepository.getLoggedUser();
 
     result.when(
-      (success) {
+      (success) async {
+        final playerId = success.id;
         emit(
           state.copyWith(
             user: success,
-            status: StateStatus.loaded,
           ),
         );
-        _matchCubit.getMatchesByUserId(id: success.id);
+        final result2 = await _matchRepository.getMatchesByUserIdAndMatchStatus(
+          id: playerId,
+          matchStatus: MatchStatus.matchCreated,
+        );
+        result2.when(
+          (success) async {
+            emit(
+              state.copyWith(
+                matchesCreated: success,
+              ),
+            );
+            final result3 =
+                await _matchRepository.getMatchesByUserIdAndMatchStatus(
+              id: playerId,
+              matchStatus: MatchStatus.scheduledMatch,
+            );
+            result3.when(
+              (success) async {
+                emit(
+                  state.copyWith(
+                    scheduledMatches: success,
+                  ),
+                );
+                final result4 =
+                    await _matchRepository.getMatchesByUserIdAndMatchStatus(
+                  id: playerId,
+                  matchStatus: MatchStatus.matchPlayed,
+                );
+                result4.when(
+                  (success) => emit(
+                    state.copyWith(
+                      status: StateStatus.loaded,
+                      matchesPlayed: success,
+                    ),
+                  ),
+                  (error) => emit(
+                    state.copyWith(
+                      status: StateStatus.error,
+                      errorMessage: error.toString(),
+                    ),
+                  ),
+                );
+              },
+              (error) => emit(
+                state.copyWith(
+                  status: StateStatus.error,
+                  errorMessage: error.toString(),
+                ),
+              ),
+            );
+          },
+          (error) => emit(
+            state.copyWith(
+              status: StateStatus.error,
+              errorMessage: error.toString(),
+            ),
+          ),
+        );
       },
       (error) => emit(
         state.copyWith(

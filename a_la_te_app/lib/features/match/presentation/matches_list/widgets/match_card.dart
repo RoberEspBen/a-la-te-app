@@ -1,4 +1,5 @@
 import 'package:a_la_te_app/core/routing/app_router.dart';
+import 'package:a_la_te_app/core/styles/app_spaces.dart';
 import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,7 @@ class MatchCard extends StatelessWidget {
                               'assets/images/user/user_default1.png',
                           width: 50,
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
+                        AppSpaces.gapW16,
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

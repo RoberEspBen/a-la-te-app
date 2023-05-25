@@ -7,8 +7,8 @@ import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.d
 import 'package:a_la_te_app/features/match/data/repositories/api_match_repository.dart';
 import 'package:a_la_te_app/features/match/data/repositories/mock_match_repository.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
-import 'package:a_la_te_app/features/player/data/api_user_repository.dart';
-import 'package:a_la_te_app/features/player/data/mock_user_repository.dart';
+import 'package:a_la_te_app/features/player/data/api_player_repository.dart';
+import 'package:a_la_te_app/features/player/data/mock_player_repository.dart';
 import 'package:a_la_te_app/features/player/domain/repository/player_repository.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:a_la_te_app/features/user/data/api_user_repository.dart';
@@ -68,7 +68,7 @@ void registerCubits() {
     ..registerLazySingleton<UserCubit>(
       () => UserCubit(
         userRepository: locator<UserRepository>(),
-        matchCubit: locator<MatchCubit>(),
+        matchRepository: locator<MatchRepository>(),
       ),
     );
 }

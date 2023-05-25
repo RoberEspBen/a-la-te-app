@@ -22,8 +22,8 @@ class MockUserRepository extends UserRepository {
         mobilePhoneNumber: '667668669',
         level: '2',
         skillfullHand: 'Izquierda',
-        wonMatches: 20,
-        playedMatches: 27,
+        wonMatches: 4,
+        playedMatches: 6,
       ),
     );
   }

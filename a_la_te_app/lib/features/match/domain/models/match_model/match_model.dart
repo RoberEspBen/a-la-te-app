@@ -4,10 +4,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'match_model.freezed.dart';
 part 'match_model.g.dart';
 
+enum MatchStatus {
+  matchCreated,
+  scheduledMatch,
+  matchPlayed,
+}
+
 @freezed
 class MatchModel with _$MatchModel {
   const factory MatchModel({
     required String id,
+    @Default(MatchStatus.matchCreated) MatchStatus matchStatus,
     @Default(0) int firstPlayerId,
     @Default('') String firstPlayerName,
     @Default(0) int firstPlayerLevel,
@@ -23,6 +30,7 @@ class MatchModel with _$MatchModel {
     @Default(0) int initialHour,
     @Default(0) int finalHour,
     @Default(null) List<MatchSet>? matchResult,
+    @Default(0) int? winningPlayerId,
   }) = _MatchModel;
 
   factory MatchModel.fromJson(Map<String, Object?> json) =>
