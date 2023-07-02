@@ -13,12 +13,6 @@ class ApiExampleRepository extends ExampleRepository {
     try {
       // ignore: avoid_dynamic_calls
       final response = await networkService.get(Endpoints.examples);
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       final result = <Example>[];
 

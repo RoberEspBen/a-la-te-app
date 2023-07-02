@@ -1,10 +1,11 @@
+import 'package:a_la_te_app/core/styles/app_colors.dart';
 import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 enum ALTButtonType {
   primary,
   secondary,
+  bottomModal,
 }
 
 enum ALTButtonSize {
@@ -50,19 +51,23 @@ class ALTButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(model.borderRadius),
+            borderRadius: model.type != ALTButtonType.bottomModal
+                ? BorderRadius.circular(model.borderRadius)
+                : BorderRadius.vertical(
+                    bottom: Radius.circular(model.borderRadius),
+                  ),
           ),
-          backgroundColor: model.type == ALTButtonType.primary
-              ? ThemeData().primaryColor
+          backgroundColor: model.type != ALTButtonType.secondary
+              ? AppColors.primary
               : Colors.white,
-          disabledBackgroundColor: ThemeData().primaryColor.withOpacity(0.6),
-          disabledForegroundColor: Colors.white.withOpacity(0.75),
-          foregroundColor: model.type == ALTButtonType.primary
+          disabledBackgroundColor: AppColors.primary.withOpacity(0.4),
+          disabledForegroundColor: Colors.white.withOpacity(0.6),
+          foregroundColor: model.type != ALTButtonType.secondary
               ? Colors.white
-              : ThemeData().primaryColor,
+              : AppColors.primary,
           side: model.type == ALTButtonType.secondary
-              ? BorderSide(
-                  color: ThemeData().primaryColor,
+              ? const BorderSide(
+                  color: AppColors.primary,
                 )
               : null,
         ),
@@ -95,7 +100,7 @@ class ALTButton extends StatelessWidget {
           ),
         Text(
           text,
-          style: AppTextStyle.f12w600,
+          style: AppTextStyle.f14w600,
         ),
         if (rightIcon != null)
           Icon(

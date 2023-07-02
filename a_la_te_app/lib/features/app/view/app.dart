@@ -1,7 +1,10 @@
 import 'package:a_la_te_app/core/di/service_locator.dart';
 import 'package:a_la_te_app/core/routing/app_router.dart';
 import 'package:a_la_te_app/features/bottom_nav_bar/application/cubit/bottom_nav_bar_cubit.dart';
+import 'package:a_la_te_app/features/club/domain/repository/club_repository.dart';
+import 'package:a_la_te_app/features/match/application/create_match/cubit/create_match_cubit.dart';
 import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:a_la_te_app/l10n/l10n.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -24,6 +27,13 @@ class App extends StatelessWidget {
         BlocProvider<UserCubit>(
           create: (_) => locator<UserCubit>()..getUser(),
           lazy: false,
+        ),
+        BlocProvider<CreateMatchCubit>(
+          create: (_) => CreateMatchCubit(
+            matchRepository: locator<MatchRepository>(),
+            clubRepository: locator<ClubRepository>(),
+            userCubit: locator<UserCubit>(),
+          )..init(),
         ),
       ],
       child: MaterialApp.router(

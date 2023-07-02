@@ -2,6 +2,8 @@ import 'package:a_la_te_app/core/network/endpoints.dart';
 import 'package:a_la_te_app/core/network/network_service.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
+import 'package:a_la_te_app/features/user/domain/model/user.dart';
+import 'package:flutter/material.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 class ApiMatchRepository extends MatchRepository {
@@ -13,12 +15,6 @@ class ApiMatchRepository extends MatchRepository {
     try {
       // ignore: avoid_dynamic_calls
       final response = await networkService.get(Endpoints.matches);
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       final result = <MatchModel>[];
 
@@ -45,12 +41,6 @@ class ApiMatchRepository extends MatchRepository {
           'userId': id,
         },
       );
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       final result = <MatchModel>[];
 
@@ -79,13 +69,6 @@ class ApiMatchRepository extends MatchRepository {
           'matchStatus': matchStatus,
         },
       );
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
-
       final result = <MatchModel>[];
 
       // ignore: avoid_dynamic_calls
@@ -94,6 +77,32 @@ class ApiMatchRepository extends MatchRepository {
       }
 
       return Success(result);
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> createMatch({
+    required String clubName,
+    required DateTime matchDate,
+    required TimeOfDay initialTime,
+    required TimeOfDay finalTime,
+    required User user,
+  }) async {
+    try {
+      // ignore: avoid_dynamic_calls
+      final response = await networkService.post(
+        Endpoints.matchesByUserId,
+        queryParameters: {
+          'clubName': clubName,
+          'matchDate': matchDate,
+          'initialTime': initialTime,
+          'finalTime': finalTime,
+        },
+      );
+
+      return const Success(MatchModel(id: '0'));
     } catch (e) {
       return Error(Exception(e));
     }

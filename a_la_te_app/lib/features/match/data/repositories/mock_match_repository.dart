@@ -1,6 +1,8 @@
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_set/match_set.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
+import 'package:a_la_te_app/features/user/domain/model/user.dart';
+import 'package:flutter/material.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 class MockMatchRepository implements MatchRepository {
@@ -393,6 +395,37 @@ class MockMatchRepository implements MatchRepository {
             winningPlayerId: 2,
           ),
         ]);
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> createMatch({
+    required String clubName,
+    required DateTime matchDate,
+    required TimeOfDay initialTime,
+    required TimeOfDay finalTime,
+    required User user,
+  }) async {
+    try {
+      print(user.name);
+      final match = MatchModel(
+        id: '20',
+        matchStatus: MatchStatus.matchCreated,
+        firstPlayerId: user.id,
+        firstPlayerLevel: int.parse(user.level),
+        firstPlayerName: user.name,
+        firstPlayerPhoto: user.userPhoto,
+        clubName: clubName,
+        clubAddress:
+            'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+        matchDate: matchDate,
+        initialHour: initialTime.hour * 60 * 60,
+        finalHour: finalTime.hour * 60 * 60,
+        clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+      );
+      return Success(match);
+    } catch (e) {
+      return Error(Exception(e));
     }
   }
 }
