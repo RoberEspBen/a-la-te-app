@@ -73,9 +73,11 @@ class MatchCard extends StatelessWidget {
                         const SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          match.clubName,
-                          style: AppTextStyle.f14w500,
+                        Flexible(
+                          child: Text(
+                            match.clubName,
+                            style: AppTextStyle.f14w500,
+                          ),
                         ),
                       ],
                     ),

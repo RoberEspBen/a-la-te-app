@@ -11,13 +11,13 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
       state.copyWith(
         options: [
           BottomNavBarOptionModel(
-            name: 'Contador',
+            name: 'Inicio',
             icon: Icons.punch_clock_rounded,
             routeLocation: '/',
             routeName: AppRoute.startApp.name,
           ),
           BottomNavBarOptionModel(
-            name: 'Partidos',
+            name: 'Buscar Partidos',
             icon: Icons.sports,
             routeLocation: '/matchesList',
             routeName: AppRoute.matchesList.name,

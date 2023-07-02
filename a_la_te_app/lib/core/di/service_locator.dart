@@ -1,5 +1,8 @@
 import 'package:a_la_te_app/core/network/dio_client.dart';
 import 'package:a_la_te_app/core/network/network_service.dart';
+import 'package:a_la_te_app/features/club/data/api_club_repository.dart';
+import 'package:a_la_te_app/features/club/data/mock_club_repository.dart';
+import 'package:a_la_te_app/features/club/domain/repository/club_repository.dart';
 import 'package:a_la_te_app/features/example/data/repositories/api_example_repository.dart';
 import 'package:a_la_te_app/features/example/data/repositories/mock_example_repository.dart';
 import 'package:a_la_te_app/features/example/domain/repositories/example_repository.dart';
@@ -51,6 +54,13 @@ Future<void> serviceLocatorSetUp() async {
       () => useMocks
           ? MockPlayerRepository()
           : ApiPlayerRepository(
+              networkService: locator<NetworkService>(),
+            ),
+    )
+    ..registerLazySingleton<ClubRepository>(
+      () => useMocks
+          ? MockClubRepository()
+          : ApiClubRepository(
               networkService: locator<NetworkService>(),
             ),
     );

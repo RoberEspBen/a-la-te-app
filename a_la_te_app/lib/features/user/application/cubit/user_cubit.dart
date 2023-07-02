@@ -100,4 +100,17 @@ class UserCubit extends Cubit<UserState> {
       ),
     );
   }
+
+  void setNewMatch({required MatchModel match}) {
+    emit(state.copyWith(status: StateStatus.loading));
+    final newCreatedMatchesList = List<MatchModel>.from(state.matchesCreated)
+      ..add(match);
+
+    emit(
+      state.copyWith(
+        status: StateStatus.loaded,
+        matchesCreated: newCreatedMatchesList,
+      ),
+    );
+  }
 }

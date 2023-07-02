@@ -17,4 +17,7 @@ class Endpoints {
 
   //PLAYER
   static const String playerById = '/playerById';
+
+  //CLUB
+  static const String clubs = '/clubs';
 }

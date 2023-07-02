@@ -26,126 +26,155 @@ class ProfileScreen extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state.status.isLoaded) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      state.user.userPhoto ??
-                          'assets/images/user/user_default1.png',
-                      width: 70,
-                    ),
-                    AppSpaces.gapW16,
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            state.user.name,
-                            style: AppTextStyle.f16w700,
-                          ),
-                          if (state.user.description != null)
-                            Text(
-                              state.user.description!,
-                              style: AppTextStyle.f12w400,
-                            ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                AppSpaces.gapH16,
-                IntrinsicHeight(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ColoredBox(
+                color: AppColors.primary,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
                     children: [
-                      Column(
+                      Row(
                         children: [
-                          Text(
-                            'Partidos jugados',
-                            style: AppTextStyle.f14w500,
+                          Image.asset(
+                            state.user.userPhoto ??
+                                'assets/images/user/user_default1.png',
+                            width: 70,
                           ),
-                          Text(
-                            state.user.playedMatches.toString(),
-                            style: AppTextStyle.f14w700,
-                          ),
+                          AppSpaces.gapW16,
+                          Flexible(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  state.user.name,
+                                  style: AppTextStyle.f16w700.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                                if (state.user.description != null)
+                                  Text(
+                                    state.user.description!,
+                                    style: AppTextStyle.f12w400.copyWith(
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
-                      const VerticalDivider(
-                        thickness: 2,
-                        color: AppColors.black2,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Partidos ganados',
-                            style: AppTextStyle.f14w500,
-                          ),
-                          Text(
-                            state.user.wonMatches.toString(),
-                            style: AppTextStyle.f14w700,
-                          ),
-                        ],
-                      ),
-                      const VerticalDivider(
-                        thickness: 2,
-                        color: AppColors.black2,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Mano',
-                            style: AppTextStyle.f14w500,
-                          ),
-                          Text(
-                            state.user.skillfullHand,
-                            style: AppTextStyle.f14w700,
-                          ),
-                        ],
+                      AppSpaces.gapH16,
+                      IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'Partidos jugados',
+                                  style: AppTextStyle.f14w500.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                                Text(
+                                  state.user.playedMatches.toString(),
+                                  style: AppTextStyle.f14w700.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const VerticalDivider(
+                              thickness: 2,
+                              color: AppColors.white,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'Partidos ganados',
+                                  style: AppTextStyle.f14w500.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                                Text(
+                                  state.user.wonMatches.toString(),
+                                  style: AppTextStyle.f14w700.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const VerticalDivider(
+                              thickness: 2,
+                              color: AppColors.white,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'Mano',
+                                  style: AppTextStyle.f14w500.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                                Text(
+                                  state.user.skillfullHand,
+                                  style: AppTextStyle.f14w700.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                AppSpaces.gapH24,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
                   children: [
-                    Text(
-                      'Últimos partidos',
-                      style: AppTextStyle.f16w700,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Últimos partidos',
+                          style: AppTextStyle.f16w700,
+                        ),
+                        ALTButton(
+                          model: ALTButtonModel(
+                            size: ALTButtonSize.tight,
+                            type: ALTButtonType.secondary,
+                            text: 'Ver todos',
+                          ),
+                          onPressed: () => print('jiji'),
+                        ),
+                      ],
                     ),
-                    ALTButton(
-                      model: ALTButtonModel(
-                        size: ALTButtonSize.tight,
-                        type: ALTButtonType.secondary,
-                        text: 'Ver todos',
-                      ),
-                      onPressed: () => print('jiji'),
-                    ),
+                    if (state.matchesPlayed.isEmpty)
+                      const Center(
+                        child: Text('No has jugado ningún partido'),
+                      )
+                    else
+                      SizedBox(
+                        height: 200,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                          ),
+                          child: HorizontalMatchesList(
+                            matches: state.matchesPlayed,
+                            playerId: state.user.id,
+                          ),
+                        ),
+                      )
                   ],
                 ),
-                if (state.matchesPlayed.isEmpty)
-                  const Center(
-                    child: Text('No has jugado ningún partido'),
-                  )
-                else
-                  SizedBox(
-                    height: 200,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                      ),
-                      child: HorizontalMatchesList(
-                        matches: state.matchesPlayed,
-                        playerId: state.user.id,
-                      ),
-                    ),
-                  )
-              ],
-            ),
+              ),
+            ],
           );
         } else {
           return const SizedBox.shrink();

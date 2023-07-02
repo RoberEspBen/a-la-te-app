@@ -18,12 +18,6 @@ class ApiPlayerRepository extends PlayerRepository {
           'PlayerId': id,
         },
       );
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       final result = Player(id: id);
 

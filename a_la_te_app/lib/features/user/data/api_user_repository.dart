@@ -13,12 +13,6 @@ class ApiUserRepository extends UserRepository {
     try {
       // ignore: avoid_dynamic_calls
       final response = await networkService.get(Endpoints.loggedUser);
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       const result = User(id: 4);
 
@@ -38,12 +32,6 @@ class ApiUserRepository extends UserRepository {
           'userId': id,
         },
       );
-      // ignore: avoid_dynamic_calls
-      if (response.statusCode == 230) {
-        return Error(
-          Exception('Ha ocurrido un error'),
-        );
-      }
 
       final result = User(id: id);
 

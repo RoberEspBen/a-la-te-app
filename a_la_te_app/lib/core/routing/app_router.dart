@@ -1,9 +1,10 @@
 import 'package:a_la_te_app/features/bottom_nav_bar/presentation/screens/bottom_nav_bar_screen.dart';
-import 'package:a_la_te_app/features/counter/counter.dart';
 import 'package:a_la_te_app/features/example/domain/models/example.dart';
 import 'package:a_la_te_app/features/example/presentation/example_details/screens/example_details_screen.dart';
 import 'package:a_la_te_app/features/example/presentation/examples_list/screens/examples_list_screen.dart';
+import 'package:a_la_te_app/features/home/presentation/screens/home_screen.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
+import 'package:a_la_te_app/features/match/presentation/create_match/screens/create_match_screen.dart';
 import 'package:a_la_te_app/features/match/presentation/match_details/screens/match_details_screen.dart';
 import 'package:a_la_te_app/features/match/presentation/matches_list/screens/matches_list_screen.dart';
 import 'package:a_la_te_app/features/player/domain/model/player.dart';
@@ -18,6 +19,7 @@ enum AppRoute {
   examplesList('/examplesList'),
   exampleDetails('exampleDetails'),
   //MATCH
+  createMatch('createMatch'),
   matchesList('/matchesList'),
   matchDetails('matchDetails'),
   //PROFILE
@@ -53,9 +55,19 @@ final goRouter = GoRouter(
           name: AppRoute.startApp.name,
           pageBuilder: (context, state) {
             return const NoTransitionPage(
-              child: CounterPage(),
+              child: HomeScreen(),
             );
           },
+          routes: [
+            GoRoute(
+              parentNavigatorKey: _rootNavigatorKey,
+              path: AppRoute.createMatch.path,
+              name: AppRoute.createMatch.name,
+              builder: (context, state) {
+                return const CreateMatchScreen();
+              },
+            ),
+          ],
         ),
         GoRoute(
           parentNavigatorKey: _shellNavigatorKey,
