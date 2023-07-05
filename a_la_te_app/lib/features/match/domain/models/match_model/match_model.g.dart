@@ -20,9 +20,9 @@ _$_MatchModel _$$_MatchModelFromJson(Map<String, dynamic> json) =>
       secondPlayerName: json['secondPlayerName'] as String? ?? null,
       secondPlayerLevel: json['secondPlayerLevel'] as int? ?? null,
       secondPlayerPhoto: json['secondPlayerPhoto'] as String? ?? null,
-      clubName: json['clubName'] as String? ?? '',
-      clubAddress: json['clubAddress'] as String? ?? '',
-      clubImage: json['clubImage'] as String? ?? null,
+      club: json['club'] == null
+          ? null
+          : Club.fromJson(json['club'] as Map<String, dynamic>),
       matchDate: json['matchDate'] == null
           ? null
           : DateTime.parse(json['matchDate'] as String),
@@ -47,9 +47,7 @@ Map<String, dynamic> _$$_MatchModelToJson(_$_MatchModel instance) =>
       'secondPlayerName': instance.secondPlayerName,
       'secondPlayerLevel': instance.secondPlayerLevel,
       'secondPlayerPhoto': instance.secondPlayerPhoto,
-      'clubName': instance.clubName,
-      'clubAddress': instance.clubAddress,
-      'clubImage': instance.clubImage,
+      'club': instance.club,
       'matchDate': instance.matchDate?.toIso8601String(),
       'initialHour': instance.initialHour,
       'finalHour': instance.finalHour,

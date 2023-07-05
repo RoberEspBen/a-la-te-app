@@ -9,6 +9,7 @@ class MatchDetailsState with _$MatchDetailsState {
   const factory MatchDetailsState({
     @Default(null) Player? firstPlayer,
     @Default(null) Player? secondPlayer,
+    @Default(false) bool joiningMatch,
     @Default(StateStatus.initial) StateStatus status,
     @Default('') String errorMessage,
   }) = _MatchDetailsState;

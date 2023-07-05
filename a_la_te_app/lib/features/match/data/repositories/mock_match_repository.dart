@@ -1,6 +1,8 @@
+import 'package:a_la_te_app/features/club/domain/model/club.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_set/match_set.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
+import 'package:a_la_te_app/features/player/domain/model/player.dart';
 import 'package:a_la_te_app/features/user/domain/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:multiple_result/multiple_result.dart';
@@ -18,9 +20,13 @@ class MockMatchRepository implements MatchRepository {
         firstPlayerId: 1,
         firstPlayerName: 'Juan Pérez',
         firstPlayerLevel: 2,
-        clubName: 'Polideportivo Las Torres',
-        clubAddress:
-            'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+        club: const Club(
+          id: '0',
+          clubAddress:
+              'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+          clubName: 'Polideportivo Las Torres',
+          clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+        ),
         matchDate: DateTime(
           2023,
           5,
@@ -34,9 +40,13 @@ class MockMatchRepository implements MatchRepository {
         firstPlayerId: 2,
         firstPlayerName: 'Roberto Espinosa',
         firstPlayerLevel: 2,
-        clubName: 'Polideportivo Las Torres',
-        clubAddress:
-            'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+        club: const Club(
+          id: '0',
+          clubAddress:
+              'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+          clubName: 'Polideportivo Las Torres',
+          clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+        ),
         matchDate: DateTime(
           2023,
           5,
@@ -65,9 +75,13 @@ class MockMatchRepository implements MatchRepository {
         secondPlayerId: 3,
         secondPlayerName: 'Paco Pons',
         secondPlayerLevel: 3,
-        clubName: 'Polideportivo Molina de Segura',
-        clubAddress:
-            'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+        club: const Club(
+          id: '1',
+          clubAddress:
+              'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+          clubName: 'Polideportivo Molina de Segura',
+          clubImage: 'assets/images/clubs/tenis_molina.jpg',
+        ),
         matchDate: DateTime(
           2023,
           4,
@@ -95,9 +109,13 @@ class MockMatchRepository implements MatchRepository {
         secondPlayerId: 1,
         secondPlayerName: 'Juan Pérez',
         secondPlayerLevel: 2,
-        clubName: 'Polideportivo Molina de Segura',
-        clubAddress:
-            'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+        club: const Club(
+          id: '1',
+          clubAddress:
+              'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+          clubName: 'Polideportivo Molina de Segura',
+          clubImage: 'assets/images/clubs/tenis_molina.jpg',
+        ),
         matchDate: DateTime(
           2023,
           4,
@@ -125,9 +143,13 @@ class MockMatchRepository implements MatchRepository {
         secondPlayerId: 1,
         secondPlayerName: 'Juan Pérez',
         secondPlayerLevel: 2,
-        clubName: 'Polideportivo Las Torres',
-        clubAddress:
-            'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+        club: const Club(
+          id: '0',
+          clubAddress:
+              'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+          clubName: 'Polideportivo Las Torres',
+          clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+        ),
         matchDate: DateTime(
           2023,
           4,
@@ -167,9 +189,13 @@ class MockMatchRepository implements MatchRepository {
             firstPlayerId: 2,
             firstPlayerName: 'Roberto Espinosa',
             firstPlayerLevel: 2,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de la Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -190,9 +216,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 3,
             secondPlayerName: 'Paco Pons',
             secondPlayerLevel: 3,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -213,9 +243,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 3,
             secondPlayerName: 'Paco Pons',
             secondPlayerLevel: 3,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -244,9 +278,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 1,
             secondPlayerName: 'Juan Pérez',
             secondPlayerLevel: 2,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -275,9 +313,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 2,
             secondPlayerName: 'Roberto Espinosa',
             secondPlayerLevel: 2,
-            clubName: 'Polideportivo Las Torres',
-            clubAddress:
-                'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+            club: const Club(
+              id: '0',
+              clubAddress:
+                  'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+              clubName: 'Polideportivo Las Torres',
+              clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -306,9 +348,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 3,
             secondPlayerName: 'Paco Pons',
             secondPlayerLevel: 3,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -337,9 +383,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 1,
             secondPlayerName: 'Juan Pérez',
             secondPlayerLevel: 2,
-            clubName: 'Polideportivo Molina de Segura',
-            clubAddress:
-                'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+            club: const Club(
+              id: '1',
+              clubAddress:
+                  'Avenida de La Industria, SN, Molina de Segura, Murcia, España',
+              clubName: 'Polideportivo Molina de Segura',
+              clubImage: 'assets/images/clubs/tenis_molina.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -372,9 +422,13 @@ class MockMatchRepository implements MatchRepository {
             secondPlayerId: 2,
             secondPlayerName: 'Roberto Espinosa',
             secondPlayerLevel: 2,
-            clubName: 'Polideportivo Las Torres',
-            clubAddress:
-                'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+            club: const Club(
+              id: '0',
+              clubAddress:
+                  'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+              clubName: 'Polideportivo Las Torres',
+              clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
+            ),
             matchDate: DateTime(
               2023,
               4,
@@ -400,14 +454,13 @@ class MockMatchRepository implements MatchRepository {
 
   @override
   Future<Result<MatchModel, Exception>> createMatch({
-    required String clubName,
+    required Club club,
     required DateTime matchDate,
     required TimeOfDay initialTime,
     required TimeOfDay finalTime,
     required User user,
   }) async {
     try {
-      print(user.name);
       final match = MatchModel(
         id: '20',
         matchStatus: MatchStatus.matchCreated,
@@ -415,15 +468,51 @@ class MockMatchRepository implements MatchRepository {
         firstPlayerLevel: int.parse(user.level),
         firstPlayerName: user.name,
         firstPlayerPhoto: user.userPhoto,
-        clubName: clubName,
-        clubAddress:
-            'C/ Miguel Induráin, SN, Las Torres de Cotillas, Murcia, España',
+        club: club,
         matchDate: matchDate,
         initialHour: initialTime.hour * 60 * 60,
         finalHour: finalTime.hour * 60 * 60,
-        clubImage: 'assets/images/clubs/tenis_las_torres.jpg',
       );
       return Success(match);
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> setSecondPlayer({
+    required MatchModel match,
+    required Player player,
+  }) async {
+    try {
+      return Success(
+        match.copyWith(
+          secondPlayerId: player.id,
+          secondPlayerLevel: int.parse(player.level),
+          secondPlayerName: player.name,
+          secondPlayerPhoto: player.playerPhoto,
+        ),
+      );
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> setMatchResult({
+    required MatchModel match,
+    required List<MatchSet> matchResult,
+    required bool isPlayer1Winner,
+  }) async {
+    try {
+      return Success(
+        match.copyWith(
+          matchResult: matchResult,
+          matchStatus: MatchStatus.matchPlayed,
+          winningPlayerId:
+              isPlayer1Winner ? match.firstPlayerId : match.secondPlayerId,
+        ),
+      );
     } catch (e) {
       return Error(Exception(e));
     }

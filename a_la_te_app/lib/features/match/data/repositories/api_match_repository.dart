@@ -1,7 +1,10 @@
 import 'package:a_la_te_app/core/network/endpoints.dart';
 import 'package:a_la_te_app/core/network/network_service.dart';
+import 'package:a_la_te_app/features/club/domain/model/club.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
+import 'package:a_la_te_app/features/match/domain/models/match_set/match_set.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
+import 'package:a_la_te_app/features/player/domain/model/player.dart';
 import 'package:a_la_te_app/features/user/domain/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:multiple_result/multiple_result.dart';
@@ -84,7 +87,7 @@ class ApiMatchRepository extends MatchRepository {
 
   @override
   Future<Result<MatchModel, Exception>> createMatch({
-    required String clubName,
+    required Club club,
     required DateTime matchDate,
     required TimeOfDay initialTime,
     required TimeOfDay finalTime,
@@ -95,7 +98,7 @@ class ApiMatchRepository extends MatchRepository {
       final response = await networkService.post(
         Endpoints.matchesByUserId,
         queryParameters: {
-          'clubName': clubName,
+          'clubName': club,
           'matchDate': matchDate,
           'initialTime': initialTime,
           'finalTime': finalTime,
@@ -103,6 +106,53 @@ class ApiMatchRepository extends MatchRepository {
       );
 
       return const Success(MatchModel(id: '0'));
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> setSecondPlayer({
+    required MatchModel match,
+    required Player player,
+  }) async {
+    try {
+      final response = await networkService.post(
+        Endpoints.setSecondPlayer,
+        //TODO: set queryParameters
+      );
+      return Success(
+        match.copyWith(
+          secondPlayerId: player.id,
+          secondPlayerLevel: int.parse(player.level),
+          secondPlayerName: player.name,
+          secondPlayerPhoto: player.playerPhoto,
+        ),
+      );
+    } catch (e) {
+      return Error(Exception(e));
+    }
+  }
+
+  @override
+  Future<Result<MatchModel, Exception>> setMatchResult({
+    required MatchModel match,
+    required List<MatchSet> matchResult,
+    required bool isPlayer1Winner,
+  }) async {
+    try {
+      final response = await networkService.post(
+        Endpoints.setMatchResult,
+        //TODO: set queryParameters
+      );
+      return Success(
+        match.copyWith(
+          matchResult: matchResult,
+          matchStatus: MatchStatus.matchPlayed,
+          winningPlayerId:
+              isPlayer1Winner ? match.firstPlayerId : match.secondPlayerId,
+        ),
+      );
     } catch (e) {
       return Error(Exception(e));
     }

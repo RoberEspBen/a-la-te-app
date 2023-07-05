@@ -3,14 +3,15 @@ import 'package:a_la_te_app/core/styles/app_colors.dart';
 import 'package:a_la_te_app/core/styles/app_spaces.dart';
 import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/core/widgets/buttons/alt_button.dart';
+import 'package:a_la_te_app/features/club/domain/model/club.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 void showClubSelectorModal({
   required BuildContext context,
-  List<String>? clubs,
-  required String? currentClubSelected,
-  required Future<void> Function({String? clubName}) submitAction,
+  List<Club>? clubs,
+  required Club? currentClubSelected,
+  required Future<void> Function({Club? club}) submitAction,
 }) {
   showALTModal(
     context: context,
@@ -30,16 +31,16 @@ class _ClubSelectorModal extends StatefulWidget {
     required this.submitAction,
   });
 
-  final List<String>? clubs;
-  final String? currentClubSelected;
-  final Future<void> Function({String? clubName}) submitAction;
+  final List<Club>? clubs;
+  final Club? currentClubSelected;
+  final Future<void> Function({Club? club}) submitAction;
 
   @override
   State<_ClubSelectorModal> createState() => __ClubSelectorModalState();
 }
 
 class __ClubSelectorModalState extends State<_ClubSelectorModal> {
-  String? clubSelectedInList;
+  Club? clubSelectedInList;
 
   @override
   void initState() {
@@ -62,7 +63,7 @@ class __ClubSelectorModalState extends State<_ClubSelectorModal> {
             clubs: widget.clubs ?? [],
             currentSelectedClub: clubSelectedInList,
             setClubSelected: ({
-              required String club,
+              required Club club,
             }) {
               setState(() {
                 clubSelectedInList = club;
@@ -96,7 +97,7 @@ class __ClubSelectorModalState extends State<_ClubSelectorModal> {
                   text: 'Aceptar',
                 ),
                 onPressed: () {
-                  widget.submitAction(clubName: clubSelectedInList);
+                  widget.submitAction(club: clubSelectedInList);
                   context.pop();
                 },
               ),
@@ -116,9 +117,9 @@ class _ClubList extends StatelessWidget {
     required this.setClubSelected,
   });
 
-  final List<String> clubs;
-  final String? currentSelectedClub;
-  final void Function({required String club}) setClubSelected;
+  final List<Club> clubs;
+  final Club? currentSelectedClub;
+  final void Function({required Club club}) setClubSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -139,16 +140,20 @@ class _ClubList extends StatelessWidget {
             padding: const EdgeInsets.all(AppSpaces.s12),
             decoration: BoxDecoration(
               color: currentSelectedClub != null &&
-                      currentSelectedClub!.compareTo(clubs[index]) == 0
+                      currentSelectedClub!.clubName
+                              .compareTo(clubs[index].clubName) ==
+                          0
                   ? AppColors.primary
                   : AppColors.white,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Text(
-              clubs[index],
+              clubs[index].clubName,
               style: AppTextStyle.f14w500.copyWith(
                 color: currentSelectedClub != null &&
-                        currentSelectedClub!.compareTo(clubs[index]) == 0
+                        currentSelectedClub!.clubName
+                                .compareTo(clubs[index].clubName) ==
+                            0
                     ? AppColors.white
                     : AppColors.primary,
               ),

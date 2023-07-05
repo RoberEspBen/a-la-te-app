@@ -59,7 +59,21 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Tus partidos',
+                          'Partidos programados',
+                          style: AppTextStyle.f16w700,
+                        ),
+                        AppSpaces.gapH8,
+                        ...List.generate(
+                          state.scheduledMatches.length,
+                          (index) => Column(
+                            children: [
+                              MatchCard(match: state.scheduledMatches[index]),
+                              AppSpaces.gapH8,
+                            ],
+                          ),
+                        ),
+                        Text(
+                          'Partidos creados',
                           style: AppTextStyle.f16w700,
                         ),
                         AppSpaces.gapH8,
@@ -68,15 +82,6 @@ class HomeScreen extends StatelessWidget {
                           (index) => Column(
                             children: [
                               MatchCard(match: state.matchesCreated[index]),
-                              AppSpaces.gapH8,
-                            ],
-                          ),
-                        ),
-                        ...List.generate(
-                          state.scheduledMatches.length,
-                          (index) => Column(
-                            children: [
-                              MatchCard(match: state.scheduledMatches[index]),
                               AppSpaces.gapH8,
                             ],
                           ),

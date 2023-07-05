@@ -1,3 +1,4 @@
+import 'package:a_la_te_app/features/club/domain/model/club.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_set/match_set.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -23,9 +24,7 @@ class MatchModel with _$MatchModel {
     @Default(null) String? secondPlayerName,
     @Default(null) int? secondPlayerLevel,
     @Default(null) String? secondPlayerPhoto,
-    @Default('') String clubName,
-    @Default('') String clubAddress,
-    @Default(null) String? clubImage,
+    @Default(null) Club? club,
     @Default(null) DateTime? matchDate,
     @Default(0) int initialHour,
     @Default(0) int finalHour,

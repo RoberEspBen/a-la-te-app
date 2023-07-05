@@ -18,6 +18,7 @@ dependencies:
   flutter_date_pickers: 0.4.2
   flutter_localizations:
     sdk: flutter
+  font_awesome_flutter: 10.4.0
   freezed: 2.3.2
   freezed_annotation: 2.2.0
   get_it: 7.2.0

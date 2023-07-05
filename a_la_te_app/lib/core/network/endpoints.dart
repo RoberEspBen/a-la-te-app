@@ -10,6 +10,8 @@ class Endpoints {
   //MATCH
   static const String matches = '/matches';
   static const String matchesByUserId = '/matchesByUserId';
+  static const String setSecondPlayer = '/setSecondPlayer';
+  static const String setMatchResult = '/setMatchResult';
 
   //USER
   static const String loggedUser = '/loggedUser';
