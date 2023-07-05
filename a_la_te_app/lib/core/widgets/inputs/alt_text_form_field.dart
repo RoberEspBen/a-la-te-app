@@ -8,6 +8,7 @@ enum ALTTextFormFieldType {
   number,
   phone,
   email,
+  setNumber,
 }
 
 class ALTTextFormFieldModel {
@@ -68,7 +69,14 @@ class ALTTextFormField extends StatelessWidget {
                       text: model.value,
                     )
                   : model.controller,
-              style: AppTextStyle.f14w500,
+              textAlign: model.type == ALTTextFormFieldType.setNumber
+                  ? TextAlign.center
+                  : TextAlign.start,
+              style: model.type == ALTTextFormFieldType.setNumber
+                  ? AppTextStyle.f18w700.copyWith(
+                      fontSize: 26,
+                    )
+                  : AppTextStyle.f14w500,
               onChanged: onChanged,
               keyboardType: _getKeyboardTypeByType(),
               enabled: onChanged != null,

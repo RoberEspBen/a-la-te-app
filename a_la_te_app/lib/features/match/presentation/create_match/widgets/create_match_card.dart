@@ -30,7 +30,7 @@ class CreateMatchCard extends StatelessWidget {
               height: heightCalculate(
                 context: context,
                 date: state.matchDate != null,
-                club: state.clubName != null,
+                club: state.selectedClub != null,
               ),
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -73,10 +73,10 @@ class CreateMatchCard extends StatelessWidget {
                             onTap: () => showClubSelectorModal(
                               context: context,
                               clubs: state.clubs,
-                              currentClubSelected:
-                                  state.clubName == null && state.clubs != null
-                                      ? state.clubs!.first
-                                      : state.clubName,
+                              currentClubSelected: state.selectedClub == null &&
+                                      state.clubs != null
+                                  ? state.clubs!.first
+                                  : state.selectedClub!,
                               submitAction:
                                   context.read<CreateMatchCubit>().selectClub,
                             ),
@@ -96,9 +96,9 @@ class CreateMatchCard extends StatelessWidget {
                                 'Fecha: ${DateFormat('dd/MM/yyyy').format(state.matchDate!)}',
                                 style: AppTextStyle.f14w600,
                               ),
-                            if (state.clubName != null)
+                            if (state.selectedClub != null)
                               Text(
-                                'Club: ${state.clubName!}',
+                                'Club: ${state.selectedClub!.clubName}',
                                 style: AppTextStyle.f14w600,
                               ),
                           ],
@@ -115,7 +115,7 @@ class CreateMatchCard extends StatelessWidget {
                         borderRadius: 8,
                       ),
                       onPressed:
-                          state.clubName == null || state.matchDate == null
+                          state.selectedClub == null || state.matchDate == null
                               ? null
                               : () => context.pushNamed(
                                     AppRoute.createMatch.name,

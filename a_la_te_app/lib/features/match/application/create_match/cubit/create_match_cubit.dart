@@ -1,4 +1,5 @@
 import 'package:a_la_te_app/core/constants/enums/state_status.dart';
+import 'package:a_la_te_app/features/club/domain/model/club.dart';
 import 'package:a_la_te_app/features/club/domain/repository/club_repository.dart';
 import 'package:a_la_te_app/features/match/application/create_match/cubit/create_match_state.dart';
 import 'package:a_la_te_app/features/match/domain/repository/match_repository.dart';
@@ -23,7 +24,7 @@ class CreateMatchCubit extends Cubit<CreateMatchState> {
   void reset() {
     emit(
       state.copyWith(
-        clubName: null,
+        selectedClub: null,
         matchDate: null,
         matchFinalHour: null,
         matchInitialHour: null,
@@ -69,13 +70,13 @@ class CreateMatchCubit extends Cubit<CreateMatchState> {
   }
 
   Future<void> selectClub({
-    String? clubName,
+    Club? club,
   }) async {
-    clubName ??= state.clubName ?? '';
+    club ??= state.selectedClub;
 
     emit(
       state.copyWith(
-        clubName: clubName,
+        selectedClub: club,
       ),
     );
   }
@@ -105,7 +106,7 @@ class CreateMatchCubit extends Cubit<CreateMatchState> {
       ),
     );
     final result = await _matchRepository.createMatch(
-      clubName: state.clubName!,
+      club: state.selectedClub!,
       matchDate: state.matchDate!,
       initialTime: state.matchInitialHour!,
       finalTime: state.matchFinalHour!,

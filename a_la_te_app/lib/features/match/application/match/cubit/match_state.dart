@@ -8,7 +8,8 @@ part 'match_state.freezed.dart';
 class MatchState with _$MatchState {
   const factory MatchState({
     @Default([]) List<MatchModel> matches,
-    @Default([]) List<MatchModel> matchesByUserId,
+    @Default([]) List<MatchModel> filterMatches,
+    @Default('') String currentFilterValue,
     @Default(StateStatus.initial) StateStatus status,
     @Default('') String errorMessage,
   }) = _MatchState;

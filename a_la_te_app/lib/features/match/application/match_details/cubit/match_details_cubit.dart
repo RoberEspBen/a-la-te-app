@@ -13,10 +13,12 @@ class MatchDetailsCubit extends Cubit<MatchDetailsState> {
   Future<void> getPlayersById({
     required int firstPlayerId,
     int? secondPlayerId,
+    bool joiningMatch = false,
   }) async {
     emit(
       state.copyWith(
         status: StateStatus.loading,
+        joiningMatch: joiningMatch,
       ),
     );
 

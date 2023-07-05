@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MatchDetailsState {
   Player? get firstPlayer => throw _privateConstructorUsedError;
   Player? get secondPlayer => throw _privateConstructorUsedError;
+  bool get joiningMatch => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -35,6 +36,7 @@ abstract class $MatchDetailsStateCopyWith<$Res> {
   $Res call(
       {Player? firstPlayer,
       Player? secondPlayer,
+      bool joiningMatch,
       StateStatus status,
       String errorMessage});
 
@@ -57,6 +59,7 @@ class _$MatchDetailsStateCopyWithImpl<$Res, $Val extends MatchDetailsState>
   $Res call({
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
+    Object? joiningMatch = null,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -69,6 +72,10 @@ class _$MatchDetailsStateCopyWithImpl<$Res, $Val extends MatchDetailsState>
           ? _value.secondPlayer
           : secondPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      joiningMatch: null == joiningMatch
+          ? _value.joiningMatch
+          : joiningMatch // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -116,6 +123,7 @@ abstract class _$$_MatchDetailsStateCopyWith<$Res>
   $Res call(
       {Player? firstPlayer,
       Player? secondPlayer,
+      bool joiningMatch,
       StateStatus status,
       String errorMessage});
 
@@ -138,6 +146,7 @@ class __$$_MatchDetailsStateCopyWithImpl<$Res>
   $Res call({
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
+    Object? joiningMatch = null,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -150,6 +159,10 @@ class __$$_MatchDetailsStateCopyWithImpl<$Res>
           ? _value.secondPlayer
           : secondPlayer // ignore: cast_nullable_to_non_nullable
               as Player?,
+      joiningMatch: null == joiningMatch
+          ? _value.joiningMatch
+          : joiningMatch // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -168,6 +181,7 @@ class _$_MatchDetailsState implements _MatchDetailsState {
   const _$_MatchDetailsState(
       {this.firstPlayer = null,
       this.secondPlayer = null,
+      this.joiningMatch = false,
       this.status = StateStatus.initial,
       this.errorMessage = ''});
 
@@ -179,6 +193,9 @@ class _$_MatchDetailsState implements _MatchDetailsState {
   final Player? secondPlayer;
   @override
   @JsonKey()
+  final bool joiningMatch;
+  @override
+  @JsonKey()
   final StateStatus status;
   @override
   @JsonKey()
@@ -186,7 +203,7 @@ class _$_MatchDetailsState implements _MatchDetailsState {
 
   @override
   String toString() {
-    return 'MatchDetailsState(firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, status: $status, errorMessage: $errorMessage)';
+    return 'MatchDetailsState(firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, joiningMatch: $joiningMatch, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
@@ -198,14 +215,16 @@ class _$_MatchDetailsState implements _MatchDetailsState {
                 other.firstPlayer == firstPlayer) &&
             (identical(other.secondPlayer, secondPlayer) ||
                 other.secondPlayer == secondPlayer) &&
+            (identical(other.joiningMatch, joiningMatch) ||
+                other.joiningMatch == joiningMatch) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, firstPlayer, secondPlayer, status, errorMessage);
+  int get hashCode => Object.hash(runtimeType, firstPlayer, secondPlayer,
+      joiningMatch, status, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -219,6 +238,7 @@ abstract class _MatchDetailsState implements MatchDetailsState {
   const factory _MatchDetailsState(
       {final Player? firstPlayer,
       final Player? secondPlayer,
+      final bool joiningMatch,
       final StateStatus status,
       final String errorMessage}) = _$_MatchDetailsState;
 
@@ -226,6 +246,8 @@ abstract class _MatchDetailsState implements MatchDetailsState {
   Player? get firstPlayer;
   @override
   Player? get secondPlayer;
+  @override
+  bool get joiningMatch;
   @override
   StateStatus get status;
   @override

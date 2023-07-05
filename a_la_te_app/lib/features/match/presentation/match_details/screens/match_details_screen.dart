@@ -1,13 +1,22 @@
+import 'dart:async';
+
 import 'package:a_la_te_app/core/constants/enums/state_status.dart';
 import 'package:a_la_te_app/core/di/service_locator.dart';
+import 'package:a_la_te_app/core/modals/alt_modal.dart';
+import 'package:a_la_te_app/core/modals/success_modal.dart';
+import 'package:a_la_te_app/core/routing/app_router.dart';
 import 'package:a_la_te_app/core/styles/app_colors.dart';
 import 'package:a_la_te_app/core/styles/app_spaces.dart';
 import 'package:a_la_te_app/core/styles/app_text_style.dart';
 import 'package:a_la_te_app/core/widgets/buttons/alt_button.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_cubit.dart';
+import 'package:a_la_te_app/features/match/application/match/cubit/match_state.dart';
 import 'package:a_la_te_app/features/match/application/match_details/cubit/match_details_cubit.dart';
 import 'package:a_la_te_app/features/match/application/match_details/cubit/match_details_state.dart';
 import 'package:a_la_te_app/features/match/domain/models/match_model/match_model.dart';
+import 'package:a_la_te_app/features/match/presentation/match_details/modals/set_result_modal.dart';
 import 'package:a_la_te_app/features/match/presentation/match_details/widgets/player_card.dart';
+import 'package:a_la_te_app/features/player/domain/model/player.dart';
 import 'package:a_la_te_app/features/player/domain/repository/player_repository.dart';
 import 'package:a_la_te_app/features/user/application/cubit/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +38,7 @@ class MatchDetailsScreen extends StatelessWidget {
           secondPlayerId: match.secondPlayerId,
         ),
       child: Scaffold(
-        backgroundColor: AppColors.backgroundGrey2,
+        backgroundColor: AppColors.white,
         appBar: AppBar(title: const Text('Detalles del partido')),
         body: _Body(match: match),
       ),
@@ -47,7 +56,20 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MatchDetailsCubit, MatchDetailsState>(
+    return BlocConsumer<MatchDetailsCubit, MatchDetailsState>(
+      listener: (_, state) {
+        if (state.status.isLoaded &&
+            state.secondPlayer != null &&
+            state.joiningMatch) {
+          showSuccessModal(
+            context: context,
+            title: '¡Te has unido al partido con éxito!',
+            subtitle1: 'Podrás verlo en el apartado ',
+            subtitle2: 'Tus partidos',
+            subtitle3: ' en la pantalla de inicio.',
+          );
+        }
+      },
       builder: (context, state) {
         return SingleChildScrollView(
           child: Column(
@@ -56,7 +78,7 @@ class _Body extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 children: [
                   Image.asset(
-                    match.clubImage ??
+                    match.club!.clubImage ??
                         'assets/images/clubs/tenis_las_torres.jpg',
                     width: double.infinity,
                   ),
@@ -67,11 +89,11 @@ class _Body extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          match.clubName,
+                          match.club!.clubName,
                           style: AppTextStyle.f18w700,
                         ),
                         Text(
-                          match.clubAddress,
+                          match.club!.clubAddress,
                           style: AppTextStyle.f14w600,
                         ),
                       ],
@@ -116,14 +138,21 @@ class _Body extends StatelessWidget {
                     if (match.matchStatus == MatchStatus.matchCreated &&
                         locator<UserCubit>().state.user.id !=
                             match.firstPlayerId)
+                      _JoinMatchButton(match: match),
+                    if (match.matchStatus == MatchStatus.scheduledMatch)
                       SizedBox(
                         width: double.infinity,
                         child: ALTButton(
                           model: ALTButtonModel(
-                            text: 'Unirme al partido',
+                            text: 'Ingresar resultado',
                             type: ALTButtonType.primary,
                           ),
-                          onPressed: () => print('jiji'),
+                          onPressed: () async {
+                            showSetResultModal(
+                              context: context,
+                              match: match,
+                            );
+                          },
                         ),
                       ),
                   ],
@@ -131,6 +160,80 @@ class _Body extends StatelessWidget {
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+}
+
+class _JoinMatchButton extends StatelessWidget {
+  const _JoinMatchButton({
+    super.key,
+    required this.match,
+  });
+
+  final MatchModel match;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MatchCubit, MatchState>(
+      builder: (context2, _) {
+        return SizedBox(
+          width: double.infinity,
+          child: match.secondPlayerId == null
+              ? ALTButton(
+                  model: ALTButtonModel(
+                    text: 'Unirme al partido',
+                    type: ALTButtonType.primary,
+                  ),
+                  onPressed: () async {
+                    unawaited(
+                      context.read<MatchDetailsCubit>().getPlayersById(
+                            firstPlayerId: match.firstPlayerId,
+                            secondPlayerId: locator<UserCubit>().state.user.id,
+                            joiningMatch: true,
+                          ),
+                    );
+                    unawaited(
+                      context2.read<MatchCubit>().setSecondPlayer(
+                            match: match,
+                            player: Player(
+                              id: locator<UserCubit>().state.user.id,
+                              nif: locator<UserCubit>().state.user.nif,
+                              name: locator<UserCubit>().state.user.name,
+                              description:
+                                  locator<UserCubit>().state.user.description,
+                              playerPhoto:
+                                  locator<UserCubit>().state.user.userPhoto,
+                              mobilePhoneNumber: locator<UserCubit>()
+                                  .state
+                                  .user
+                                  .mobilePhoneNumber,
+                              level: locator<UserCubit>().state.user.level,
+                              skillfullHand:
+                                  locator<UserCubit>().state.user.skillfullHand,
+                              wonMatches:
+                                  locator<UserCubit>().state.user.wonMatches,
+                              playedMatches:
+                                  locator<UserCubit>().state.user.playedMatches,
+                            ),
+                          ),
+                    );
+                    locator<UserCubit>().setNewScheduleMatch(
+                      match: match.copyWith(
+                        secondPlayerId: locator<UserCubit>().state.user.id,
+                        secondPlayerLevel: int.parse(
+                          locator<UserCubit>().state.user.level,
+                        ),
+                        secondPlayerName: locator<UserCubit>().state.user.name,
+                        secondPlayerPhoto:
+                            locator<UserCubit>().state.user.userPhoto,
+                        matchStatus: MatchStatus.scheduledMatch,
+                      ),
+                    );
+                  },
+                )
+              : null,
         );
       },
     );
@@ -148,6 +251,13 @@ class _DateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: AppColors.black2,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Column(
         children: [
           Text(
@@ -195,6 +305,13 @@ class _ResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: AppColors.black2,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Column(
         children: [
           Text(

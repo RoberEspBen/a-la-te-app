@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MatchState {
   List<MatchModel> get matches => throw _privateConstructorUsedError;
-  List<MatchModel> get matchesByUserId => throw _privateConstructorUsedError;
+  List<MatchModel> get filterMatches => throw _privateConstructorUsedError;
+  String get currentFilterValue => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -34,7 +35,8 @@ abstract class $MatchStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<MatchModel> matches,
-      List<MatchModel> matchesByUserId,
+      List<MatchModel> filterMatches,
+      String currentFilterValue,
       StateStatus status,
       String errorMessage});
 }
@@ -53,7 +55,8 @@ class _$MatchStateCopyWithImpl<$Res, $Val extends MatchState>
   @override
   $Res call({
     Object? matches = null,
-    Object? matchesByUserId = null,
+    Object? filterMatches = null,
+    Object? currentFilterValue = null,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -62,10 +65,14 @@ class _$MatchStateCopyWithImpl<$Res, $Val extends MatchState>
           ? _value.matches
           : matches // ignore: cast_nullable_to_non_nullable
               as List<MatchModel>,
-      matchesByUserId: null == matchesByUserId
-          ? _value.matchesByUserId
-          : matchesByUserId // ignore: cast_nullable_to_non_nullable
+      filterMatches: null == filterMatches
+          ? _value.filterMatches
+          : filterMatches // ignore: cast_nullable_to_non_nullable
               as List<MatchModel>,
+      currentFilterValue: null == currentFilterValue
+          ? _value.currentFilterValue
+          : currentFilterValue // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -88,7 +95,8 @@ abstract class _$$_MatchStateCopyWith<$Res>
   @useResult
   $Res call(
       {List<MatchModel> matches,
-      List<MatchModel> matchesByUserId,
+      List<MatchModel> filterMatches,
+      String currentFilterValue,
       StateStatus status,
       String errorMessage});
 }
@@ -105,7 +113,8 @@ class __$$_MatchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? matches = null,
-    Object? matchesByUserId = null,
+    Object? filterMatches = null,
+    Object? currentFilterValue = null,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -114,10 +123,14 @@ class __$$_MatchStateCopyWithImpl<$Res>
           ? _value._matches
           : matches // ignore: cast_nullable_to_non_nullable
               as List<MatchModel>,
-      matchesByUserId: null == matchesByUserId
-          ? _value._matchesByUserId
-          : matchesByUserId // ignore: cast_nullable_to_non_nullable
+      filterMatches: null == filterMatches
+          ? _value._filterMatches
+          : filterMatches // ignore: cast_nullable_to_non_nullable
               as List<MatchModel>,
+      currentFilterValue: null == currentFilterValue
+          ? _value.currentFilterValue
+          : currentFilterValue // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -135,11 +148,12 @@ class __$$_MatchStateCopyWithImpl<$Res>
 class _$_MatchState implements _MatchState {
   const _$_MatchState(
       {final List<MatchModel> matches = const [],
-      final List<MatchModel> matchesByUserId = const [],
+      final List<MatchModel> filterMatches = const [],
+      this.currentFilterValue = '',
       this.status = StateStatus.initial,
       this.errorMessage = ''})
       : _matches = matches,
-        _matchesByUserId = matchesByUserId;
+        _filterMatches = filterMatches;
 
   final List<MatchModel> _matches;
   @override
@@ -150,15 +164,18 @@ class _$_MatchState implements _MatchState {
     return EqualUnmodifiableListView(_matches);
   }
 
-  final List<MatchModel> _matchesByUserId;
+  final List<MatchModel> _filterMatches;
   @override
   @JsonKey()
-  List<MatchModel> get matchesByUserId {
-    if (_matchesByUserId is EqualUnmodifiableListView) return _matchesByUserId;
+  List<MatchModel> get filterMatches {
+    if (_filterMatches is EqualUnmodifiableListView) return _filterMatches;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_matchesByUserId);
+    return EqualUnmodifiableListView(_filterMatches);
   }
 
+  @override
+  @JsonKey()
+  final String currentFilterValue;
   @override
   @JsonKey()
   final StateStatus status;
@@ -168,7 +185,7 @@ class _$_MatchState implements _MatchState {
 
   @override
   String toString() {
-    return 'MatchState(matches: $matches, matchesByUserId: $matchesByUserId, status: $status, errorMessage: $errorMessage)';
+    return 'MatchState(matches: $matches, filterMatches: $filterMatches, currentFilterValue: $currentFilterValue, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
@@ -178,7 +195,9 @@ class _$_MatchState implements _MatchState {
             other is _$_MatchState &&
             const DeepCollectionEquality().equals(other._matches, _matches) &&
             const DeepCollectionEquality()
-                .equals(other._matchesByUserId, _matchesByUserId) &&
+                .equals(other._filterMatches, _filterMatches) &&
+            (identical(other.currentFilterValue, currentFilterValue) ||
+                other.currentFilterValue == currentFilterValue) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
@@ -188,7 +207,8 @@ class _$_MatchState implements _MatchState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_matches),
-      const DeepCollectionEquality().hash(_matchesByUserId),
+      const DeepCollectionEquality().hash(_filterMatches),
+      currentFilterValue,
       status,
       errorMessage);
 
@@ -202,14 +222,17 @@ class _$_MatchState implements _MatchState {
 abstract class _MatchState implements MatchState {
   const factory _MatchState(
       {final List<MatchModel> matches,
-      final List<MatchModel> matchesByUserId,
+      final List<MatchModel> filterMatches,
+      final String currentFilterValue,
       final StateStatus status,
       final String errorMessage}) = _$_MatchState;
 
   @override
   List<MatchModel> get matches;
   @override
-  List<MatchModel> get matchesByUserId;
+  List<MatchModel> get filterMatches;
+  @override
+  String get currentFilterValue;
   @override
   StateStatus get status;
   @override

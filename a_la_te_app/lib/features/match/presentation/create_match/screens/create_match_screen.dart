@@ -75,7 +75,7 @@ class _Body extends StatelessWidget {
                 model: ALTTextFormFieldModel(
                   type: ALTTextFormFieldType.text,
                   labelText: 'Club',
-                  value: state.clubName,
+                  value: state.selectedClub!.clubName,
                 ),
               ),
               AppSpaces.gapH16,

@@ -19,7 +19,6 @@ class PlayerCard extends StatelessWidget {
         if (player.id == locator<UserCubit>().state.user.id) {
           context.goNamed(AppRoute.profile.name);
         } else {
-          print('holaa');
           context.pushNamed(
             AppRoute.playerProfile.name,
             extra: player,
@@ -27,6 +26,14 @@ class PlayerCard extends StatelessWidget {
         }
       },
       child: Card(
+        elevation: 0,
+        color: AppColors.primaryContainer,
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            color: AppColors.black2,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 12,

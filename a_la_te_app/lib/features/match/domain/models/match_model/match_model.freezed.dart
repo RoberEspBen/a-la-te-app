@@ -30,9 +30,7 @@ mixin _$MatchModel {
   String? get secondPlayerName => throw _privateConstructorUsedError;
   int? get secondPlayerLevel => throw _privateConstructorUsedError;
   String? get secondPlayerPhoto => throw _privateConstructorUsedError;
-  String get clubName => throw _privateConstructorUsedError;
-  String get clubAddress => throw _privateConstructorUsedError;
-  String? get clubImage => throw _privateConstructorUsedError;
+  Club? get club => throw _privateConstructorUsedError;
   DateTime? get matchDate => throw _privateConstructorUsedError;
   int get initialHour => throw _privateConstructorUsedError;
   int get finalHour => throw _privateConstructorUsedError;
@@ -62,14 +60,14 @@ abstract class $MatchModelCopyWith<$Res> {
       String? secondPlayerName,
       int? secondPlayerLevel,
       String? secondPlayerPhoto,
-      String clubName,
-      String clubAddress,
-      String? clubImage,
+      Club? club,
       DateTime? matchDate,
       int initialHour,
       int finalHour,
       List<MatchSet>? matchResult,
       int? winningPlayerId});
+
+  $ClubCopyWith<$Res>? get club;
 }
 
 /// @nodoc
@@ -95,9 +93,7 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
     Object? secondPlayerName = freezed,
     Object? secondPlayerLevel = freezed,
     Object? secondPlayerPhoto = freezed,
-    Object? clubName = null,
-    Object? clubAddress = null,
-    Object? clubImage = freezed,
+    Object? club = freezed,
     Object? matchDate = freezed,
     Object? initialHour = null,
     Object? finalHour = null,
@@ -145,18 +141,10 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
           ? _value.secondPlayerPhoto
           : secondPlayerPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      clubName: null == clubName
-          ? _value.clubName
-          : clubName // ignore: cast_nullable_to_non_nullable
-              as String,
-      clubAddress: null == clubAddress
-          ? _value.clubAddress
-          : clubAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      clubImage: freezed == clubImage
-          ? _value.clubImage
-          : clubImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      club: freezed == club
+          ? _value.club
+          : club // ignore: cast_nullable_to_non_nullable
+              as Club?,
       matchDate: freezed == matchDate
           ? _value.matchDate
           : matchDate // ignore: cast_nullable_to_non_nullable
@@ -179,6 +167,18 @@ class _$MatchModelCopyWithImpl<$Res, $Val extends MatchModel>
               as int?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClubCopyWith<$Res>? get club {
+    if (_value.club == null) {
+      return null;
+    }
+
+    return $ClubCopyWith<$Res>(_value.club!, (value) {
+      return _then(_value.copyWith(club: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -200,14 +200,15 @@ abstract class _$$_MatchModelCopyWith<$Res>
       String? secondPlayerName,
       int? secondPlayerLevel,
       String? secondPlayerPhoto,
-      String clubName,
-      String clubAddress,
-      String? clubImage,
+      Club? club,
       DateTime? matchDate,
       int initialHour,
       int finalHour,
       List<MatchSet>? matchResult,
       int? winningPlayerId});
+
+  @override
+  $ClubCopyWith<$Res>? get club;
 }
 
 /// @nodoc
@@ -231,9 +232,7 @@ class __$$_MatchModelCopyWithImpl<$Res>
     Object? secondPlayerName = freezed,
     Object? secondPlayerLevel = freezed,
     Object? secondPlayerPhoto = freezed,
-    Object? clubName = null,
-    Object? clubAddress = null,
-    Object? clubImage = freezed,
+    Object? club = freezed,
     Object? matchDate = freezed,
     Object? initialHour = null,
     Object? finalHour = null,
@@ -281,18 +280,10 @@ class __$$_MatchModelCopyWithImpl<$Res>
           ? _value.secondPlayerPhoto
           : secondPlayerPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      clubName: null == clubName
-          ? _value.clubName
-          : clubName // ignore: cast_nullable_to_non_nullable
-              as String,
-      clubAddress: null == clubAddress
-          ? _value.clubAddress
-          : clubAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      clubImage: freezed == clubImage
-          ? _value.clubImage
-          : clubImage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      club: freezed == club
+          ? _value.club
+          : club // ignore: cast_nullable_to_non_nullable
+              as Club?,
       matchDate: freezed == matchDate
           ? _value.matchDate
           : matchDate // ignore: cast_nullable_to_non_nullable
@@ -331,9 +322,7 @@ class _$_MatchModel implements _MatchModel {
       this.secondPlayerName = null,
       this.secondPlayerLevel = null,
       this.secondPlayerPhoto = null,
-      this.clubName = '',
-      this.clubAddress = '',
-      this.clubImage = null,
+      this.club = null,
       this.matchDate = null,
       this.initialHour = 0,
       this.finalHour = 0,
@@ -375,13 +364,7 @@ class _$_MatchModel implements _MatchModel {
   final String? secondPlayerPhoto;
   @override
   @JsonKey()
-  final String clubName;
-  @override
-  @JsonKey()
-  final String clubAddress;
-  @override
-  @JsonKey()
-  final String? clubImage;
+  final Club? club;
   @override
   @JsonKey()
   final DateTime? matchDate;
@@ -408,7 +391,7 @@ class _$_MatchModel implements _MatchModel {
 
   @override
   String toString() {
-    return 'MatchModel(id: $id, matchStatus: $matchStatus, firstPlayerId: $firstPlayerId, firstPlayerName: $firstPlayerName, firstPlayerLevel: $firstPlayerLevel, firstPlayerPhoto: $firstPlayerPhoto, secondPlayerId: $secondPlayerId, secondPlayerName: $secondPlayerName, secondPlayerLevel: $secondPlayerLevel, secondPlayerPhoto: $secondPlayerPhoto, clubName: $clubName, clubAddress: $clubAddress, clubImage: $clubImage, matchDate: $matchDate, initialHour: $initialHour, finalHour: $finalHour, matchResult: $matchResult, winningPlayerId: $winningPlayerId)';
+    return 'MatchModel(id: $id, matchStatus: $matchStatus, firstPlayerId: $firstPlayerId, firstPlayerName: $firstPlayerName, firstPlayerLevel: $firstPlayerLevel, firstPlayerPhoto: $firstPlayerPhoto, secondPlayerId: $secondPlayerId, secondPlayerName: $secondPlayerName, secondPlayerLevel: $secondPlayerLevel, secondPlayerPhoto: $secondPlayerPhoto, club: $club, matchDate: $matchDate, initialHour: $initialHour, finalHour: $finalHour, matchResult: $matchResult, winningPlayerId: $winningPlayerId)';
   }
 
   @override
@@ -435,12 +418,7 @@ class _$_MatchModel implements _MatchModel {
                 other.secondPlayerLevel == secondPlayerLevel) &&
             (identical(other.secondPlayerPhoto, secondPlayerPhoto) ||
                 other.secondPlayerPhoto == secondPlayerPhoto) &&
-            (identical(other.clubName, clubName) ||
-                other.clubName == clubName) &&
-            (identical(other.clubAddress, clubAddress) ||
-                other.clubAddress == clubAddress) &&
-            (identical(other.clubImage, clubImage) ||
-                other.clubImage == clubImage) &&
+            (identical(other.club, club) || other.club == club) &&
             (identical(other.matchDate, matchDate) ||
                 other.matchDate == matchDate) &&
             (identical(other.initialHour, initialHour) ||
@@ -467,9 +445,7 @@ class _$_MatchModel implements _MatchModel {
       secondPlayerName,
       secondPlayerLevel,
       secondPlayerPhoto,
-      clubName,
-      clubAddress,
-      clubImage,
+      club,
       matchDate,
       initialHour,
       finalHour,
@@ -502,9 +478,7 @@ abstract class _MatchModel implements MatchModel {
       final String? secondPlayerName,
       final int? secondPlayerLevel,
       final String? secondPlayerPhoto,
-      final String clubName,
-      final String clubAddress,
-      final String? clubImage,
+      final Club? club,
       final DateTime? matchDate,
       final int initialHour,
       final int finalHour,
@@ -535,11 +509,7 @@ abstract class _MatchModel implements MatchModel {
   @override
   String? get secondPlayerPhoto;
   @override
-  String get clubName;
-  @override
-  String get clubAddress;
-  @override
-  String? get clubImage;
+  Club? get club;
   @override
   DateTime? get matchDate;
   @override

@@ -19,8 +19,8 @@ mixin _$CreateMatchState {
   DateTime? get matchDate => throw _privateConstructorUsedError;
   TimeOfDay? get matchInitialHour => throw _privateConstructorUsedError;
   TimeOfDay? get matchFinalHour => throw _privateConstructorUsedError;
-  List<String>? get clubs => throw _privateConstructorUsedError;
-  String? get clubName => throw _privateConstructorUsedError;
+  List<Club>? get clubs => throw _privateConstructorUsedError;
+  Club? get selectedClub => throw _privateConstructorUsedError;
   StateStatus get status => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -39,10 +39,12 @@ abstract class $CreateMatchStateCopyWith<$Res> {
       {DateTime? matchDate,
       TimeOfDay? matchInitialHour,
       TimeOfDay? matchFinalHour,
-      List<String>? clubs,
-      String? clubName,
+      List<Club>? clubs,
+      Club? selectedClub,
       StateStatus status,
       String errorMessage});
+
+  $ClubCopyWith<$Res>? get selectedClub;
 }
 
 /// @nodoc
@@ -62,7 +64,7 @@ class _$CreateMatchStateCopyWithImpl<$Res, $Val extends CreateMatchState>
     Object? matchInitialHour = freezed,
     Object? matchFinalHour = freezed,
     Object? clubs = freezed,
-    Object? clubName = freezed,
+    Object? selectedClub = freezed,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -82,11 +84,11 @@ class _$CreateMatchStateCopyWithImpl<$Res, $Val extends CreateMatchState>
       clubs: freezed == clubs
           ? _value.clubs
           : clubs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      clubName: freezed == clubName
-          ? _value.clubName
-          : clubName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<Club>?,
+      selectedClub: freezed == selectedClub
+          ? _value.selectedClub
+          : selectedClub // ignore: cast_nullable_to_non_nullable
+              as Club?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -96,6 +98,18 @@ class _$CreateMatchStateCopyWithImpl<$Res, $Val extends CreateMatchState>
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClubCopyWith<$Res>? get selectedClub {
+    if (_value.selectedClub == null) {
+      return null;
+    }
+
+    return $ClubCopyWith<$Res>(_value.selectedClub!, (value) {
+      return _then(_value.copyWith(selectedClub: value) as $Val);
+    });
   }
 }
 
@@ -111,10 +125,13 @@ abstract class _$$_CreateMatchStateCopyWith<$Res>
       {DateTime? matchDate,
       TimeOfDay? matchInitialHour,
       TimeOfDay? matchFinalHour,
-      List<String>? clubs,
-      String? clubName,
+      List<Club>? clubs,
+      Club? selectedClub,
       StateStatus status,
       String errorMessage});
+
+  @override
+  $ClubCopyWith<$Res>? get selectedClub;
 }
 
 /// @nodoc
@@ -132,7 +149,7 @@ class __$$_CreateMatchStateCopyWithImpl<$Res>
     Object? matchInitialHour = freezed,
     Object? matchFinalHour = freezed,
     Object? clubs = freezed,
-    Object? clubName = freezed,
+    Object? selectedClub = freezed,
     Object? status = null,
     Object? errorMessage = null,
   }) {
@@ -152,11 +169,11 @@ class __$$_CreateMatchStateCopyWithImpl<$Res>
       clubs: freezed == clubs
           ? _value._clubs
           : clubs // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      clubName: freezed == clubName
-          ? _value.clubName
-          : clubName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<Club>?,
+      selectedClub: freezed == selectedClub
+          ? _value.selectedClub
+          : selectedClub // ignore: cast_nullable_to_non_nullable
+              as Club?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -176,8 +193,8 @@ class _$_CreateMatchState implements _CreateMatchState {
       {this.matchDate = null,
       this.matchInitialHour = null,
       this.matchFinalHour = null,
-      final List<String>? clubs = const [],
-      this.clubName = null,
+      final List<Club>? clubs = const [],
+      this.selectedClub = null,
       this.status = StateStatus.initial,
       this.errorMessage = ''})
       : _clubs = clubs;
@@ -191,10 +208,10 @@ class _$_CreateMatchState implements _CreateMatchState {
   @override
   @JsonKey()
   final TimeOfDay? matchFinalHour;
-  final List<String>? _clubs;
+  final List<Club>? _clubs;
   @override
   @JsonKey()
-  List<String>? get clubs {
+  List<Club>? get clubs {
     final value = _clubs;
     if (value == null) return null;
     if (_clubs is EqualUnmodifiableListView) return _clubs;
@@ -204,7 +221,7 @@ class _$_CreateMatchState implements _CreateMatchState {
 
   @override
   @JsonKey()
-  final String? clubName;
+  final Club? selectedClub;
   @override
   @JsonKey()
   final StateStatus status;
@@ -214,7 +231,7 @@ class _$_CreateMatchState implements _CreateMatchState {
 
   @override
   String toString() {
-    return 'CreateMatchState(matchDate: $matchDate, matchInitialHour: $matchInitialHour, matchFinalHour: $matchFinalHour, clubs: $clubs, clubName: $clubName, status: $status, errorMessage: $errorMessage)';
+    return 'CreateMatchState(matchDate: $matchDate, matchInitialHour: $matchInitialHour, matchFinalHour: $matchFinalHour, clubs: $clubs, selectedClub: $selectedClub, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
@@ -229,8 +246,8 @@ class _$_CreateMatchState implements _CreateMatchState {
             (identical(other.matchFinalHour, matchFinalHour) ||
                 other.matchFinalHour == matchFinalHour) &&
             const DeepCollectionEquality().equals(other._clubs, _clubs) &&
-            (identical(other.clubName, clubName) ||
-                other.clubName == clubName) &&
+            (identical(other.selectedClub, selectedClub) ||
+                other.selectedClub == selectedClub) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
@@ -243,7 +260,7 @@ class _$_CreateMatchState implements _CreateMatchState {
       matchInitialHour,
       matchFinalHour,
       const DeepCollectionEquality().hash(_clubs),
-      clubName,
+      selectedClub,
       status,
       errorMessage);
 
@@ -259,8 +276,8 @@ abstract class _CreateMatchState implements CreateMatchState {
       {final DateTime? matchDate,
       final TimeOfDay? matchInitialHour,
       final TimeOfDay? matchFinalHour,
-      final List<String>? clubs,
-      final String? clubName,
+      final List<Club>? clubs,
+      final Club? selectedClub,
       final StateStatus status,
       final String errorMessage}) = _$_CreateMatchState;
 
@@ -271,9 +288,9 @@ abstract class _CreateMatchState implements CreateMatchState {
   @override
   TimeOfDay? get matchFinalHour;
   @override
-  List<String>? get clubs;
+  List<Club>? get clubs;
   @override
-  String? get clubName;
+  Club? get selectedClub;
   @override
   StateStatus get status;
   @override
