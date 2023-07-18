@@ -23,6 +23,56 @@ class MockClubRepository extends ClubRepository {
           clubName: 'Polideportivo Molina de Segura',
           clubImage: 'assets/images/clubs/tenis_molina.jpg',
         ),
+        const Club(
+          id: '2',
+          clubAddress: 'Calle de Murcia, 15, Murcia, España',
+          clubName: 'Club de Tenis Murcia',
+          clubImage: 'assets/images/clubs/tenis_murcia.jpg',
+        ),
+        const Club(
+          id: '3',
+          clubAddress: 'Calle del Deporte, 10, Cartagena, Murcia, España',
+          clubName: 'Club de Tenis Cartagena',
+          clubImage: 'assets/images/clubs/tenis_cartagena.jpg',
+        ),
+        const Club(
+          id: '4',
+          clubAddress: 'Avenida de los Deportes, 5, Lorca, Murcia, España',
+          clubName: 'Club de Tenis Lorca',
+          clubImage: 'assets/images/clubs/tenis_lorca.jpg',
+        ),
+        const Club(
+          id: '5',
+          clubAddress: 'Calle del Tenis, 8, Molina de Segura, Murcia, España',
+          clubName: 'Club de Tenis Molina de Segura',
+          clubImage: 'assets/images/clubs/tenis_molina2.jpg',
+        ),
+        const Club(
+          id: '6',
+          clubAddress: 'Calle del Deporte, 25, San Javier, Murcia, España',
+          clubName: 'Club de Tenis San Javier',
+          clubImage: 'assets/images/clubs/tenis_san_javier.jpg',
+        ),
+        const Club(
+          id: '7',
+          clubAddress:
+              'Calle del Tenis, 20, San Pedro del Pinatar, Murcia, España',
+          clubName: 'Club de Tenis San Pedro del Pinatar',
+          clubImage: 'assets/images/clubs/tenis_san_pedro_pinatar.jpg',
+        ),
+        const Club(
+          id: '8',
+          clubAddress: 'Calle de los Deportes, 8, Alcantarilla, Murcia, España',
+          clubName: 'Club de Tenis Alcantarilla',
+          clubImage: 'assets/images/clubs/tenis_alcantarilla.jpg',
+        ),
+        const Club(
+          id: '9',
+          clubAddress:
+              'Calle de la Raqueta, 12, Molina de Segura, Murcia, España',
+          clubName: 'Club de Tenis Raqueta Molina',
+          clubImage: 'assets/images/clubs/tenis_raqueta_molina.jpg',
+        ),
       ];
 
       return Success(result);
