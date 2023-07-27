@@ -1,4 +1,4 @@
-package com.example.verygoodcore.a_la_te_app
+package com.a_la_te_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -16,9 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return SingleChildScrollView(
           child: Stack(
@@ -33,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: ExactAssetImage(
-                          'assets/images/home/pista_tenis.jpg',
+                          'assets/images/home/home_tenis.jpg',
                         ),
                         fit: BoxFit.cover,
                       ),

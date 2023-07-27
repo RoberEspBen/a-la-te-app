@@ -127,7 +127,7 @@ class MatchCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
                                 match.club!.clubImage ??
-                                    'assets/images/clubs/tenis_las_torres.jpg',
+                                    'assets/images/clubs/tenis_1.jpg',
                                 width: 50,
                                 height: 50,
                               ),
