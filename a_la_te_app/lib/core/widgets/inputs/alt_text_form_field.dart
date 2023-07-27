@@ -130,6 +130,8 @@ class ALTTextFormField extends StatelessWidget {
         return TextInputType.emailAddress;
       case ALTTextFormFieldType.number:
         return TextInputType.number;
+      case ALTTextFormFieldType.setNumber:
+        return TextInputType.number;
       case ALTTextFormFieldType.phone:
         return TextInputType.phone;
       case ALTTextFormFieldType.text:

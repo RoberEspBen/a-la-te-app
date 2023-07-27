@@ -1,8 +1,5 @@
 import 'package:a_la_te_app/core/network/endpoints.dart';
-import 'package:a_la_te_app/core/network/interceptors/dio_connectivity_request_retrier.dart';
-import 'package:a_la_te_app/core/network/interceptors/retry_interceptor.dart';
 import 'package:a_la_te_app/core/network/network_service.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 class DioClient extends NetworkService {
@@ -12,15 +9,6 @@ class DioClient extends NetworkService {
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.responseType = ResponseType.json;
-
-    _dio.interceptors.add(
-      RetryOnConnectionChangeInterceptor(
-        requestRetrier: DioConnectivityRequestRetrier(
-          dio: _dio,
-          connectivity: Connectivity(),
-        ),
-      ),
-    );
   }
   final Dio _dio;
 

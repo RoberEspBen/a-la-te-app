@@ -78,8 +78,7 @@ class _Body extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 children: [
                   Image.asset(
-                    match.club!.clubImage ??
-                        'assets/images/clubs/tenis_las_torres.jpg',
+                    match.club!.clubImage ?? 'assets/images/clubs/tenis_1.jpg',
                     width: double.infinity,
                   ),
                   Container(
@@ -139,7 +138,8 @@ class _Body extends StatelessWidget {
                         locator<UserCubit>().state.user.id !=
                             match.firstPlayerId)
                       _JoinMatchButton(match: match),
-                    if (match.matchStatus == MatchStatus.scheduledMatch)
+                    if (match.matchStatus == MatchStatus.scheduledMatch &&
+                        match.matchDate!.isBefore(DateTime.now()))
                       SizedBox(
                         width: double.infinity,
                         child: ALTButton(

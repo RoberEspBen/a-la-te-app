@@ -87,6 +87,36 @@ class MatchCard extends StatelessWidget {
                             ),
                           ],
                         ),
+                        if (match.secondPlayerId != null)
+                          Column(
+                            children: [
+                              AppSpaces.gapH12,
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    match.secondPlayerPhoto ??
+                                        'assets/images/user/user_default1.png',
+                                    width: 50,
+                                  ),
+                                  AppSpaces.gapW16,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        match.secondPlayerName!,
+                                        style: AppTextStyle.f14w700,
+                                      ),
+                                      Text(
+                                        'Nivel ${match.secondPlayerLevel}',
+                                        style: AppTextStyle.f12w400,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         const Divider(
                           thickness: 1,
                           color: Colors.black,
@@ -97,7 +127,7 @@ class MatchCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               child: Image.asset(
                                 match.club!.clubImage ??
-                                    'assets/images/clubs/tenis_las_torres.jpg',
+                                    'assets/images/clubs/tenis_1.jpg',
                                 width: 50,
                                 height: 50,
                               ),

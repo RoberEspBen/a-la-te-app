@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExamplesListScreen extends StatelessWidget {
   const ExamplesListScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -26,10 +25,7 @@ class ExamplesListScreen extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key, this.cubit});
-
-  final ExamplesListCubit? cubit;
-
+  const _Body({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ExamplesListCubit, ExamplesListState>(
